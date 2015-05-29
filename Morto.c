@@ -108,4 +108,9 @@ MOR_tpCondRet MOR_popMorto(MOR_tpMorto mMorto, CAR_tpCarta * cartaPop){
 		return MOR_CondRetNaoOK;
 }/* Fim função: MOR pop Morto */
 
+MOR_tpCondRet MOR_retornaMorto(MOR_tpMorto mMorto, PILHA_tpPilha * pilha){
+	pilha = mMorto->morto;
+	return MOR_CondRetOK;
+}
+
 /********** Fim do módulo de implementação: MOR Morto **********/

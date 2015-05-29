@@ -98,6 +98,7 @@ MOR_tpCondRet MOR_liberaMorto(MOR_tpMorto mMorto);
 *
 ***********************************************************************/
 MOR_tpCondRet MOR_popMorto(MOR_tpMorto mMorto, CAR_tpCarta *cartaPop);
+MOR_tpCondRet MOR_retornaMorto(MOR_tpMorto mMorto, PILHA_tpPilha * pilha);
 /********** Fim do módulo de definição: MOR Morto  **********/
 
 #else

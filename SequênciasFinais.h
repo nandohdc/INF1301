@@ -96,7 +96,7 @@ SQF_tpCondRet SQF_liberaSQFinal(SQF_tpSQFinal SQFinal);
 *
 ***********************************************************************/
 SQF_tpCondRet SQF_inicializaSQFinal(SQF_tpSQFinal SQFinal, PILHA_tpPilha sqFinal);
-
+SQF_tpSQFinal SQF_retornaPilha(SQF_tpSQFinal sqf, PILHA_tpPilha * pilha);
 #undef SEQUENCIASFINAIS_EXT
 
 /********** Fim do módulo de definição: SQF Sequencias Finais  **********/

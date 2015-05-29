@@ -160,6 +160,7 @@ SQP_tpCondRet SQP_adicionaNaSequencia(PILHA_tpPilha pPilhaTira, SQP_tpSQPrincipa
 ***********************************************************************/
 SQP_tpCondRet SQP_verificaSequenciaCompleta(SQP_tpSQPrincipal SQP);
 
+SQP_tpSQPrincipal SQP_retornaPilha(SQP_tpSQPrincipal sqp, PILHA_tpPilha * pilha);
 
 #undef SEQUENCIASPRINCIPAIS_EXT
 

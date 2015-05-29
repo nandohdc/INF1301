@@ -149,7 +149,12 @@ BAR_tpCondRet BAR_embaralharBaralho(BAR_tpBaralho pBaralho);
 ***********************************************************************/
 BAR_tpCondRet BAR_imprimeBaralho(BAR_tpBaralho baralho);
 
+BAR_tpCondRet BAR_retornaTopoBaralho(BAR_tpBaralho baralho, PILHA_tpPilha *pilha);
+
+
 #undef BARALHO_INICIAL_EXT
+
+
 
 /********** Fim do módulo de definição: BAR Baralho Inicial  **********/
 

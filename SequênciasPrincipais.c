@@ -334,4 +334,9 @@ SQP_tpCondRet SQP_verificaSequenciaCompleta(SQP_tpSQPrincipal SQP){
 	return SQP_CondRetNaoOK;
 } /* Fim função: SQP verifica Sequencia Completa */
 
+SQP_tpSQPrincipal SQP_retornaPilha(SQP_tpSQPrincipal sqp, PILHA_tpPilha * pilha){
+	pilha = sqp->sqPrincipal;
+	return SQP_CondRetOK;
+}
+
 /********** Fim do módulo de implementação: SQP Sequencias Principais **********/

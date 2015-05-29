@@ -316,4 +316,10 @@ BAR_tpCondRet BAR_imprimeBaralho(BAR_tpBaralho baralho){
 	return BAR_CondRetOK;
 } /* Fim função: BAR Imprime Baralho */ 
 
+BAR_tpCondRet BAR_retornaTopoBaralho(BAR_tpBaralho baralho, PILHA_tpPilha *pilha){
+	pilha = baralho->pBCartas;
+	return BAR_CondRetOK;
+}
+
 /********** Fim do módulo de implementação: BAR  Baralho Inicial  **********/
+
