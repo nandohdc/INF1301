@@ -71,20 +71,7 @@ void DestruirBaralho(void * bBaralho)
 	BAR_liberarBaralho((BAR_tpBaralho)bBaralho);
 }
 
-ESP_tpCondRet criaEstruturaPrincipal(ESP_tpEstruturalPrincipal *eESP){
-	LIS_tpCondRet auxiliar;
 
-	*eESP = (ESP_tgEstruturalPrincipal*)malloc(sizeof(ESP_tgEstruturalPrincipal));
-
-	if (eESP == NULL){
-		return ESP_CondRetFaltouMemoria;
-	}
-
-	auxiliar = LIS_CriarLista(&((*eESP)->pESP), DestruirCarta);
-	if (auxiliar == LIS_CondRetFaltouMemoria){
-		return PILHA_CondRetFaltouMemoria;
-	}
-}
 
 ESP_tpCondRet escolheDificuldade(int *dificuldade){
 	ESP_tpCondRet auxiliar;
@@ -121,45 +108,56 @@ int checarDificuldade(int dificuldade){
 	return 0;
 }
 
-ESP_tpCondRet distribuiMortoJogo(MOR_tpMorto mMorto, SQP_tpSQPrincipal vSQP[10]){
-	ESP_tpCondRet eRet;
-	PILHA_tpPilha pAuxiliar;
-	PILHA_tpCondRet pRet;
-	CAR_tpCarta cAuxiliar;
+ESP_tpCondRet distribuiMortoJogo(LIS_tppLista ListaPrincipal){
+	LIS_tppLista lMorto;
+	LIS_tppLista lSQP;
+	MOR_tpMorto mMorto;
+	SQP_tpSQPrincipal sSQP[10];
+	CAR_tpCarta cCarta;
 	CAR_tpCondRet cRet;
+	PILHA_tpPilha pPilha;
+	PILHA_criarPilha(&pPilha);
 	int i;
-		
-	pRet = PILHA_criarPilha(&pAuxiliar);
+	int j;
+	char NovaFace = 'V';
+	char NaipeAntigo;
+	char PosicaoAntiga;
 
-	if (pRet == PILHA_CondRetFaltouMemoria){
-		return ESP_CondRetFaltouMemoria;
-	}
-	
-	if (mMorto == NULL){
-		return ESP_CondRetMortoVazio;
-	}
 
-	
+	LIS_IrInicioLista(ListaPrincipal);
+	LIS_AvancarElementoCorrente(ListaPrincipal, 1);
+	LIS_ObterValor(ListaPrincipal, (void**)&lMorto);
+
+	LIS_IrInicioLista(ListaPrincipal);
+	LIS_AvancarElementoCorrente(ListaPrincipal, 2);
+	LIS_ObterValor(ListaPrincipal, (void**)&lSQP);
+
+	LIS_IrFinalLista(lMorto);
+	LIS_ObterValor(lMorto, (void**)&mMorto);
+
+	LIS_IrInicioLista(lSQP);
 	for (i = 0; i < 10; i++){
-
-		if (vSQP[i] == NULL){
-			return ESP_CondRetSQPVazia;
+		LIS_ObterValor(lSQP, (void**)&sSQP[i]);
+		LIS_AvancarElementoCorrente(lSQP, 1); // Andando para proxima lista
 		}
-	}
-	
-	
-	for (i = 0; i < 10; i++){
 
-		cRet = CAR_criarCarta(&cAuxiliar);
+		
+	for (j = 0; j < 10; j++){
+		cRet = CAR_criarCarta(&cCarta);
 		if (cRet == CAR_CondRetMemoria){
 			return ESP_CondRetFaltouMemoria;
 		}
 		
-		MOR_popMorto(mMorto, &cAuxiliar);
-		PILHA_pushPilha(pAuxiliar, cAuxiliar);
-		SQP_adicionaNaSequencia(pAuxiliar, vSQP[i]);
-		PILHA_popPilha(pAuxiliar, &cAuxiliar);
-		CAR_destruirCarta(cAuxiliar);
+		MOR_popMorto(mMorto, &cCarta);
+
+		CAR_retornaNaipe(cCarta, &NaipeAntigo);
+		CAR_retornaPosicao(cCarta, &PosicaoAntiga);
+		CAR_editarCarta(cCarta, NovaFace, NaipeAntigo, PosicaoAntiga);// VIRANDO A FACE DA CARTA
+
+		PILHA_pushPilha(pPilha, cCarta);
+		SQP_adicionaNaSequencia(pPilha, sSQP[j]);
+		PILHA_popPilha(pPilha, &cCarta);
+		
 	}
 
 	return ESP_CondRetOK;
@@ -167,7 +165,7 @@ ESP_tpCondRet distribuiMortoJogo(MOR_tpMorto mMorto, SQP_tpSQPrincipal vSQP[10])
 }
 
 
-ESP_tpCondRet distribuiBaralho(BAR_tpBaralho pBaralho, SQP_tpSQPrincipal vSQP[10], MOR_tpMorto *mMorto){
+ESP_tpCondRet distribuiBaralho(BAR_tpBaralho pBaralho, SQP_tpSQPrincipal *vSQP[10], MOR_tpMorto *mMorto){
 	CAR_tpCondRet cRet;
 	CAR_tpCarta cCarta;
 	PILHA_tpPilha pPilha;
@@ -249,6 +247,7 @@ ESP_tpCondRet distribuiBaralho(BAR_tpBaralho pBaralho, SQP_tpSQPrincipal vSQP[10
 
 ESP_tpCondRet ESP_iniciaNovoJogo(LIS_tppLista * ListaPrincipal){
 	int dificuldade;
+	int i;
 	CAR_tpCarta carta;
 	LIS_tppLista bBaralho;
 	LIS_tppLista mMorto;
@@ -285,10 +284,10 @@ ESP_tpCondRet ESP_iniciaNovoJogo(LIS_tppLista * ListaPrincipal){
 
 	LIS_InserirElementoAntes(&mMorto, morto);
 
-	for (int i = 0; i < 10; i++){
+	for (i = 0; i < 10; i++){
 		LIS_InserirElementoAntes(&mMorto, sqPrincipal[i]);
 	}
-	for (int i = 0; i < 8; i++){
+	for (i = 0; i < 8; i++){
 		LIS_InserirElementoAntes(&mMorto, sqFinal[i]);
 	}
 
@@ -363,7 +362,7 @@ ESP_tpCondRet ESP_salvaJogo(LIS_tppLista ListaPrincipal, char nome[]){
 	LIS_ObterValor(ListaPrincipal, (void**)&morto);
 
 	MOR_retornaMorto(morto, &pilhaMorto);
-	fprintf(arq, "morto:\n");
+	fprintf(arq, "M\n");
 	while (PILHA_verificaPilhaVazia(pilhaMorto) == PILHA_CondRetOK){
 		MOR_popMorto(morto, &carta);
 		MOR_retornaMorto(morto, &pilhaMorto);
@@ -383,7 +382,7 @@ ESP_tpCondRet ESP_salvaJogo(LIS_tppLista ListaPrincipal, char nome[]){
 	LIS_AvancarElementoCorrente(ListaPrincipal, 3);
 	LIS_ObterValor(ListaPrincipal, (void**)&listaSqPrincipal);
 
-	fprintf(arq, "SQP:\n");
+	fprintf(arq, "P\n");
 
 	for (i = 0; i < 10; i++){
 
@@ -393,7 +392,7 @@ ESP_tpCondRet ESP_salvaJogo(LIS_tppLista ListaPrincipal, char nome[]){
 
 		SQP_retornaPilha(sqPrincipal, &pilha);
 
-		fprintf(arq, "%d:\n", i);
+		fprintf(arq, "%d\n", i);
 
 		while (PILHA_verificaPilhaVazia(pilha) == PILHA_CondRetOK){
 			CAR_criarCarta(&carta);
@@ -424,7 +423,7 @@ ESP_tpCondRet ESP_salvaJogo(LIS_tppLista ListaPrincipal, char nome[]){
 
 	//SEQUENCIAS FINAIS
 
-	fprintf(arq, "SQF:\n");
+	fprintf(arq, "F\n");
 
 	for (i = 0; i < 8; i++){
 
@@ -434,7 +433,7 @@ ESP_tpCondRet ESP_salvaJogo(LIS_tppLista ListaPrincipal, char nome[]){
 
 		SQF_retornaPilha(sqFinal, &pilha);
 
-		fprintf(arq, "%d:\n", i);
+		fprintf(arq, "%d\n", i);
 
 		while (PILHA_verificaPilhaVazia(pilha) == PILHA_CondRetOK){
 			CAR_criarCarta(&carta);
@@ -464,33 +463,42 @@ ESP_tpCondRet ESP_salvaJogo(LIS_tppLista ListaPrincipal, char nome[]){
 
 }
 
-ESP_tpCondRet CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
-	char morto;
-	char SQP;
+ESP_tpCondRet ESP_CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
+	char opcao;
 	int nSQP;
+	int nSQF;
+	int i;
 	char face;
 	char naipe;
 	char posicao;
 
+	LIS_tppLista lBaralho;
 	LIS_tppLista lMorto;
 	LIS_tppLista lSeqFinal;
 	LIS_tppLista lSeqPrincipal;
 
 	CAR_tpCarta cCarta;
+	BAR_tpBaralho baralho;
 	MOR_tpMorto mMorto;
-	SQP_tpCondRet sSQP;
-	SQP_criarSequencia(&SQP);
+	SQP_tpSQPrincipal SQP[10];
+	SQP_criarSequencia(&SQP[10]);
+	SQF_tpSQFinal SQF[8];
+	SQF_criarSQFinal(&SQF[8]);
 	PILHA_tpPilha pPilha;
 	PILHA_tpPilha pPilha2;
+	PILHA_tpPilha pPilha3;
 	PILHA_criarPilha(&pPilha);
 	PILHA_criarPilha(&pPilha2);
+	PILHA_criarPilha(&pPilha3);
 
+	LIS_CriarLista(&lBaralho, DestruirBaralho);
 	LIS_CriarLista(&lMorto, DestruirMorto);
 	LIS_CriarLista(&lSeqPrincipal, DestruirSeqPrincipal);
 	LIS_CriarLista(&lSeqFinal, DestruirSeqFinal);
 
 	LIS_CriarLista(ListaPrincipal, DestruirLista);
 
+	LIS_InserirElementoApos(*ListaPrincipal, lBaralho);
 	LIS_InserirElementoApos(*ListaPrincipal, lMorto);
 	LIS_InserirElementoApos(*ListaPrincipal, lSeqPrincipal);
 	LIS_InserirElementoApos(*ListaPrincipal, lSeqFinal);
@@ -504,47 +512,241 @@ ESP_tpCondRet CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
 	LIS_IrInicioLista(ListaPrincipal);
 	LIS_AvancarElementoCorrente(ListaPrincipal, 1);
 
-	//Inicio da Leitura do Morto
-	fscanf(salvo, "%c", &morto) == 1;
-	if (morto != 'M'){
-		printf("Morto: Erro ao carregar jogo!\n");
-		return ESP_CondRetErroLerMorto;
+	while (fscanf(salvo, "%c", &opcao) == 1){
+		switch (opcao){
+		case 'M': // MORTO
+			while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+				CAR_criarCarta(&cCarta);
+				CAR_editarCarta(cCarta, face, naipe, posicao);
+				PILHA_pushPilha(pPilha, cCarta);
+			}
+			break;
+
+		case 'P': // SEQUENCIAS PRINCIPAIS
+			while (fscanf(salvo, "%d", &nSQP) == 1){
+
+				switch (nSQP){ // TESTA PARA VER QUAL EH A ORDEM DA SEQUENCIA
+				case 0:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_pushPilha(pPilha2, cCarta);
+						SQP_adicionaNaSequencia(pPilha2, SQP[0]);
+						PILHA_popPilha(pPilha2, &cCarta);
+					}
+					break;
+
+				case 1:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_pushPilha(pPilha2, cCarta);
+						SQP_adicionaNaSequencia(pPilha2, SQP[1]);
+						PILHA_popPilha(pPilha2, &cCarta);
+					}
+					break;
+
+				case 2:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_pushPilha(pPilha2, cCarta);
+						SQP_adicionaNaSequencia(pPilha2, SQP[2]);
+						PILHA_popPilha(pPilha2, &cCarta);
+					}
+					break;
+
+				case 3:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_pushPilha(pPilha2, cCarta);
+						SQP_adicionaNaSequencia(pPilha2, SQP[3]);
+						PILHA_popPilha(pPilha2, &cCarta);
+					}
+					break;
+
+				case 4:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_pushPilha(pPilha2, cCarta);
+						SQP_adicionaNaSequencia(pPilha2, SQP[4]);
+						PILHA_popPilha(pPilha2, &cCarta);
+					}
+					break;
+
+				case 5:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_pushPilha(pPilha2, cCarta);
+						SQP_adicionaNaSequencia(pPilha2, SQP[5]);
+						PILHA_popPilha(pPilha2, &cCarta);
+					}
+					break;
+
+				case 6:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_pushPilha(pPilha2, cCarta);
+						SQP_adicionaNaSequencia(pPilha2, SQP[6]);
+						PILHA_popPilha(pPilha2, &cCarta);
+					}
+					break;
+
+				case 7:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_pushPilha(pPilha2, cCarta);
+						SQP_adicionaNaSequencia(pPilha2, SQP[7]);
+						PILHA_popPilha(pPilha2, &cCarta);
+					}
+					break;
+
+				case 8:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_pushPilha(pPilha2, cCarta);
+						SQP_adicionaNaSequencia(pPilha2, SQP[8]);
+						PILHA_popPilha(pPilha2, &cCarta);
+					}
+					break;
+
+				case 9:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_pushPilha(pPilha2, cCarta);
+						SQP_adicionaNaSequencia(pPilha2, SQP[9]);
+						PILHA_popPilha(pPilha2, &cCarta);
+					}
+					break;
+				}
+			}
+
+			break;
+
+		case 'F': // SEQUENCIAS FINAIS
+			while (fscanf(salvo, "%d", &nSQF) == 1){
+
+				switch (nSQF){// TESTA PARA VER QUAL EH A ORDEM DA SEQUENCIA
+				case 0:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_popPilha(pPilha3, cCarta);
+						SQP_adicionaNaSequencia(pPilha3, SQF[0]);
+						PILHA_popPilha(pPilha3, &cCarta);
+					}
+					break;
+
+				case 1:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_popPilha(pPilha3, cCarta);
+						SQP_adicionaNaSequencia(pPilha3, SQF[1]);
+						PILHA_popPilha(pPilha3, &cCarta);
+					}
+					break;
+
+				case 2:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_popPilha(pPilha3, cCarta);
+						SQP_adicionaNaSequencia(pPilha3, SQF[2]);
+						PILHA_popPilha(pPilha3, &cCarta);
+					}
+					break;
+
+				case 3:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_popPilha(pPilha3, cCarta);
+						SQP_adicionaNaSequencia(pPilha3, SQF[3]);
+						PILHA_popPilha(pPilha3, &cCarta);
+					}
+					break;
+
+				case 4:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_popPilha(pPilha3, cCarta);
+						SQP_adicionaNaSequencia(pPilha3, SQF[4]);
+						PILHA_popPilha(pPilha3, &cCarta);
+					}
+					break;
+
+				case 5:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_pushPilha(pPilha3, cCarta);
+						SQP_adicionaNaSequencia(pPilha3, SQF[5]);
+						PILHA_popPilha(pPilha3, &cCarta);
+					}
+					break;
+
+				case 6:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_pushPilha(pPilha3, cCarta);
+						SQP_adicionaNaSequencia(pPilha3, SQF[6]);
+						PILHA_popPilha(pPilha3, &cCarta);
+					}
+					break;
+
+				case 7:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_pushPilha(pPilha3, cCarta);
+						SQP_adicionaNaSequencia(pPilha3, SQF[7]);
+						PILHA_popPilha(pPilha3, &cCarta);
+					}
+					break;
+
+				case 8:
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
+						CAR_criarCarta(&cCarta);
+						CAR_editarCarta(cCarta, face, naipe, posicao);
+						PILHA_pushPilha(pPilha3, cCarta);
+						SQP_adicionaNaSequencia(pPilha3, SQF[8]);
+						PILHA_popPilha(pPilha3, &cCarta);
+					}
+					break;
+
+				}
+			}
+			break;
+		}
 
 	}
+
+	MOR_criarMorto(&mMorto, pPilha);
+	BAR_criarBaralho(&baralho);
+
+	LIS_InserirElementoAntes(lBaralho, baralho);
+	LIS_InserirElementoAntes(lMorto, mMorto);
 	
-	while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
-		CAR_criarCarta(&cCarta);
-		CAR_editarCarta(cCarta, face, naipe, posicao);
-		PILHA_pushPilha(pPilha, cCarta);
+	for (i = 0; i < 10; i++){
+		LIS_InserirElementoAntes(lSeqPrincipal, SQP[i]);
+	}
+	
+	for (i = 0; i < 8; i++){
+		LIS_InserirElementoAntes(lSeqFinal, SQF[i]);
 	}
 	PILHA_liberaPilha(pPilha);
-	MOR_criarMorto(&mMorto, pPilha);
-	LIS_InserirElementoAntes(lMorto, mMorto);
-	// Fim da leitura do Morto
-
-	//Inicio da Leitura da SQP
-	fscanf(salvo, "%c", &SQP) == 1;
-	if (SQP != 'P'){
-		printf("SQP: Erro ao carregar jogo!\n");
-		return ESP_CondRetErroLerSQP;
-	}
-	fscanf(salvo, "%d", &nSQP) == 1;
-	if (nSQP != 0){
-		printf("SQP: Erro ao carregar indice 0!\n");
-		}
-	while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
-		CAR_criarCarta(&cCarta);
-		CAR_editarCarta(cCarta, face, naipe, posicao);
-		PILHA_pushPilha(pPilha2, cCarta);
-		SQP_adicionaNaSequencia(pPilha2, sSQP);
-		PILHA_popPilha(pPilha2, &cCarta);
-	}
-
-	while (fscanf(salvo, "%d",&nSQP) == 1)
-	{
-
-	}
 	PILHA_liberaPilha(pPilha2);
-	LIS_InserirElementoAntes(lSeqPrincipal, sSQP);
-	
+	PILHA_liberaPilha(pPilha3);
+
+	fclose(salvo);
 }
