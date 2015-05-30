@@ -33,13 +33,7 @@
 #include"SequênciasFinais.h"
 #include"LISTA.h"
 
-#define ESTRUTURAPRINCIPAL_OWN
-#include "EstruturaPrincipal.h"
-#undef ESTRUTURAPRINCIPAL_OWN
 
-struct estruturaprincipal{
-	LIS_tppLista *pESP;
-};
 
 void DestruirCarta(void * pValor)
 {
@@ -72,9 +66,21 @@ void DestruirBaralho(void * bBaralho)
 }
 
 
+int checarDificuldade(int dificuldade){
+	int checador[4] = { 1, 2, 3, 4 };
+	int i;
 
-ESP_tpCondRet escolheDificuldade(int *dificuldade){
-	ESP_tpCondRet auxiliar;
+	for (i = 0; i < 4; i++){
+		if (checador[i] == dificuldade){
+			return 1;
+		}
+	}
+	return 0;
+}
+
+
+int escolheDificuldade(void){// criar na main uma variavel para receber o retorno dessa funcao
+	int dificuldade;
 	
 	printf("Escolha o nivel de dificuldade:\n");
 	
@@ -87,28 +93,15 @@ ESP_tpCondRet escolheDificuldade(int *dificuldade){
 	
 	scanf("%d", &dificuldade);
 
-	auxiliar = checadorDificuldade(&dificuldade);
-
-	if (auxiliar == 0){
-		return ESP_CondRetNivelErrado;
+	if (checarDificuldade(dificuldade) == 1){
+		return dificuldade;
 	}
 
-	return ESP_CondRetOK;
-
-}
-
-int checarDificuldade(int dificuldade){
-	int checador[4] = { 1, 2, 3, 4 };
-	int i;
-
-	for (i = 0; i < 4; i++){
-		if (checador[i] == dificuldade)
-			return 1;
-	}
 	return 0;
+
 }
 
-ESP_tpCondRet distribuiMortoJogo(LIS_tppLista ListaPrincipal){
+int  distribuiMortoJogo(LIS_tppLista ListaPrincipal){
 	LIS_tppLista lMorto;
 	LIS_tppLista lSQP;
 	MOR_tpMorto mMorto;
@@ -145,7 +138,7 @@ ESP_tpCondRet distribuiMortoJogo(LIS_tppLista ListaPrincipal){
 	for (j = 0; j < 10; j++){
 		cRet = CAR_criarCarta(&cCarta);
 		if (cRet == CAR_CondRetMemoria){
-			return ESP_CondRetFaltouMemoria;
+			return 1;
 		}
 		
 		MOR_popMorto(mMorto, &cCarta);
@@ -160,12 +153,12 @@ ESP_tpCondRet distribuiMortoJogo(LIS_tppLista ListaPrincipal){
 		CAR_destruirCarta(cCarta);
 	}
 
-	return ESP_CondRetOK;
+	return 0;
 
 }
 
 
-ESP_tpCondRet distribuiBaralho(BAR_tpBaralho pBaralho, SQP_tpSQPrincipal *vSQP[10], MOR_tpMorto *mMorto){
+int  distribuiBaralho(BAR_tpBaralho pBaralho, SQP_tpSQPrincipal vSQP[10], MOR_tpMorto mMorto){
 	CAR_tpCondRet cRet;
 	CAR_tpCarta cCarta;
 	PILHA_tpPilha pPilha;
@@ -173,7 +166,7 @@ ESP_tpCondRet distribuiBaralho(BAR_tpBaralho pBaralho, SQP_tpSQPrincipal *vSQP[1
 	MOR_tpCondRet mRet;
 	PILHA_tpPilha pBCartas;
 
-	BAR_retornaPilhaBaralho(pBaralho, pBCartas);
+	BAR_retornaTopoBaralho(pBaralho, &pBCartas);
 
 	int i;
 
@@ -241,14 +234,13 @@ ESP_tpCondRet distribuiBaralho(BAR_tpBaralho pBaralho, SQP_tpSQPrincipal *vSQP[1
 
 	mRet = MOR_criarMorto(&mMorto, pBCartas);
 
-	return ESP_CondRetOK;
+	return 0;
 
 }
 
-ESP_tpCondRet ESP_iniciaNovoJogo(LIS_tppLista * ListaPrincipal){
+int  ESP_iniciaNovoJogo(LIS_tppLista * ListaPrincipal){
 	int dificuldade;
 	int i;
-	CAR_tpCarta carta;
 	LIS_tppLista bBaralho;
 	LIS_tppLista mMorto;
 	LIS_tppLista sSeqFinal;
@@ -259,7 +251,7 @@ ESP_tpCondRet ESP_iniciaNovoJogo(LIS_tppLista * ListaPrincipal){
 	BAR_tpBaralho baralho;
 	SQF_tpSQFinal sqFinal[8] = { NULL };
 
-	escolheDificuldade(&dificuldade);
+	dificuldade = escolheDificuldade();
 
 	LIS_CriarLista(&bBaralho, DestruirBaralho);
 	LIS_CriarLista(&mMorto, DestruirMorto);
@@ -282,20 +274,20 @@ ESP_tpCondRet ESP_iniciaNovoJogo(LIS_tppLista * ListaPrincipal){
 
 	distribuiBaralho(baralho, sqPrincipal, morto);
 
-	LIS_InserirElementoAntes(&mMorto, morto);
+	LIS_InserirElementoAntes(mMorto, morto);
 
 	for (i = 0; i < 10; i++){
-		LIS_InserirElementoAntes(&mMorto, sqPrincipal[i]);
+		LIS_InserirElementoAntes(mMorto, sqPrincipal[i]);
 	}
 	for (i = 0; i < 8; i++){
-		LIS_InserirElementoAntes(&mMorto, sqFinal[i]);
+		LIS_InserirElementoAntes(mMorto, sqFinal[i]);
 	}
 
-	return ESP_CondRetOK;
+	return 0;
 
 }
 
-ESP_tpCondRet ESP_realizaJogada(LIS_tppLista ListaPrincipal, int sq_de, int sq_para, CAR_tpCarta carta){
+int  ESP_realizaJogada(LIS_tppLista ListaPrincipal, int sq_de, int sq_para, CAR_tpCarta carta){
 
 	SQP_tpSQPrincipal sqDe;
 	SQP_tpSQPrincipal sqPara;
@@ -322,10 +314,15 @@ ESP_tpCondRet ESP_realizaJogada(LIS_tppLista ListaPrincipal, int sq_de, int sq_p
 
 	SQP_verificaSequenciaCompleta(sqPara);
 
-	return ESP_CondRetOK;
+	return 0;
 }
 
-ESP_tpCondRet ESP_salvaJogo(LIS_tppLista ListaPrincipal, char nome[]){
+int ESP_salvaJogo(LIS_tppLista ListaPrincipal, char nome[]){
+	char naipe;
+	char posicao;
+	char face;
+	int i;
+	
 
 	LIS_tppLista listaSqPrincipal;
 	LIS_tppLista listaSqFinal;
@@ -333,27 +330,24 @@ ESP_tpCondRet ESP_salvaJogo(LIS_tppLista ListaPrincipal, char nome[]){
 	SQF_tpSQFinal sqFinal;
 	CAR_tpCarta carta;
 	
-	SQF_tpSQFinal sqFinal;
+	//SQF_tpSQFinal sqFinal; ?????????????????????
 	MOR_tpMorto morto;
 	PILHA_tpPilha pilhaMorto;
 	PILHA_tpPilha pilha;
 	PILHA_tpPilha auxiliar;
 
-	
-	char naipe;
-	char posicao;
-	char face;
-	int i, j, k;
+	PILHA_criarPilha(&auxiliar);
+	PILHA_criarPilha(&pilha);
+	PILHA_criarPilha(&pilhaMorto);	
 
 	LIS_CriarLista(&listaSqPrincipal, DestruirLista);
 	LIS_CriarLista(&listaSqFinal, DestruirLista);
+
 	SQP_criarSequencia(&sqPrincipal);
 	CAR_criarCarta(&carta);
-	MOR_criarMorto(morto, pilhaMorto);
+	MOR_criarMorto(&morto, pilhaMorto);
 
-	PILHA_criarPilha(&auxiliar);
-	PILHA_criarPilha(&pilha);
-	PILHA_criarPilha(&pilhaMorto);
+	
 	FILE *arq = fopen(nome, "w");
 	
 	
@@ -457,11 +451,11 @@ ESP_tpCondRet ESP_salvaJogo(LIS_tppLista ListaPrincipal, char nome[]){
 	}
 
 
-	return ESP_CondRetOK;
+	return 0;
 
 }
 
-ESP_tpCondRet ESP_CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
+int  ESP_CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
 	char opcao;
 	int nSQP;
 	int i;
@@ -488,12 +482,13 @@ ESP_tpCondRet ESP_CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
 	PILHA_criarPilha(&pPilha2);
 	PILHA_criarPilha(&pPilha3);
 
+	LIS_CriarLista(ListaPrincipal, DestruirLista);
+
 	LIS_CriarLista(&lBaralho, DestruirBaralho);
 	LIS_CriarLista(&lMorto, DestruirMorto);
 	LIS_CriarLista(&lSeqPrincipal, DestruirSeqPrincipal);
 	LIS_CriarLista(&lSeqFinal, DestruirSeqFinal);
-
-	LIS_CriarLista(ListaPrincipal, DestruirLista);
+	
 
 	LIS_InserirElementoApos(*ListaPrincipal, lBaralho);
 	LIS_InserirElementoApos(*ListaPrincipal, lMorto);
@@ -506,8 +501,8 @@ ESP_tpCondRet ESP_CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
 		printf("Ler Salvo: Erro arquivo NULL!\n");
 	}
 
-	LIS_IrInicioLista(ListaPrincipal);
-	LIS_AvancarElementoCorrente(ListaPrincipal, 1);
+	LIS_IrInicioLista((*ListaPrincipal));
+	LIS_AvancarElementoCorrente((*ListaPrincipal), 1);
 
 	while (fscanf(salvo, "%c", &opcao) == 1){
 		switch (opcao){
@@ -657,4 +652,6 @@ ESP_tpCondRet ESP_CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
 	PILHA_liberaPilha(pPilha3);
 
 	fclose(salvo);
+
+	return 0;
 }

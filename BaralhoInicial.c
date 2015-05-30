@@ -317,7 +317,7 @@ BAR_tpCondRet BAR_imprimeBaralho(BAR_tpBaralho baralho){
 } /* Fim função: BAR Imprime Baralho */ 
 
 BAR_tpCondRet BAR_retornaTopoBaralho(BAR_tpBaralho baralho, PILHA_tpPilha *pilha){
-	pilha = baralho->pBCartas;
+	(*pilha) = baralho->pBCartas;
 	return BAR_CondRetOK;
 }
 
