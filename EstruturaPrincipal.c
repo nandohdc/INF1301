@@ -35,11 +35,6 @@
 
 
 
-void DestruirCarta(void * pValor)
-{
-	CAR_destruirCarta((CAR_tpCarta)pValor);
-}
-
 void DestruirLista(void * pLista)
 {
 	LIS_DestruirLista((LIS_tppLista)pLista);
@@ -158,76 +153,77 @@ int  distribuiMortoJogo(LIS_tppLista ListaPrincipal){
 }
 
 
-int  distribuiBaralho(BAR_tpBaralho pBaralho, SQP_tpSQPrincipal vSQP[10], MOR_tpMorto mMorto){
+int  distribuiBaralho(BAR_tpBaralho pBaralho, SQP_tpSQPrincipal vSQP[], MOR_tpMorto mMorto){
+	int i;
 	CAR_tpCondRet cRet;
 	CAR_tpCarta cCarta;
 	PILHA_tpPilha pPilha;
+	PILHA_tpPilha pSQP[10];
 	PILHA_tpCondRet pRet;
 	MOR_tpCondRet mRet;
 	PILHA_tpPilha pBCartas;
 
 	BAR_retornaTopoBaralho(pBaralho, &pBCartas);
-
-	int i;
-
+		
 	pRet = PILHA_criarPilha(&pPilha);
-
-	for (i = 0; i< 54; i++){
+	/*
+	for (i = 0; i < 10; i++){
+		PILHA_criarPilha(&pSQP[i]);
+	}
+	*/
+	for (i = 0; i < 54; i++){
 
 		cRet = CAR_criarCarta(&cCarta);
 		PILHA_popPilha(pBCartas, &cCarta);
 		PILHA_pushPilha(pPilha, cCarta);
 
 		if (i < 6){
-			SQP_adicionaNaSequencia(pPilha, vSQP[0]);
+			SQP_pushSQP(vSQP[0], cCarta);
+		}
+
+		else if (i >= 6 && i < 12){
+			SQP_pushSQP(vSQP[1], cCarta);
+		}
+
+		else if (i >= 12 && i < 18){
+			SQP_pushSQP(vSQP[2], cCarta);
 
 		}
 
-		if (i >= 6 && i < 12){
-			SQP_adicionaNaSequencia(pPilha, vSQP[1]);
+		else if (i >= 18 && i < 24){
+			SQP_pushSQP(vSQP[3], cCarta);
+		}
+
+		else if (i >= 24 && i < 29){
+			SQP_pushSQP(vSQP[4], cCarta);
 
 		}
 
-		if (i >= 12 && i < 18){
-			SQP_adicionaNaSequencia(pPilha, vSQP[2]);
+		else if (i >= 29 && i < 34){
+			SQP_pushSQP(vSQP[5], cCarta);
 
 		}
 
-		if (i >= 18 && i < 24){
-			SQP_adicionaNaSequencia(pPilha, vSQP[3]);
+		else if (i >= 34 && i < 39){
+			SQP_pushSQP(vSQP[6], cCarta);
 
 		}
 
-		if (i >= 24 && i < 29){
-			SQP_adicionaNaSequencia(pPilha, vSQP[4]);
+		else if (i >= 39 && i < 44){
+			SQP_pushSQP(vSQP[7], cCarta);
 
 		}
 
-		if (i >= 29 && i < 34){
-			SQP_adicionaNaSequencia(pPilha, vSQP[5]);
+		else if (i >= 44 && i < 49){
+			SQP_pushSQP(vSQP[8], cCarta);
 
 		}
 
-		if (i >= 34 && i < 39){
-			SQP_adicionaNaSequencia(pPilha, vSQP[6]);
+		else if (i >= 49 && i < 54){
+			SQP_pushSQP(vSQP[9], cCarta);
 
 		}
-
-		if (i >= 39 && i < 44){
-			SQP_adicionaNaSequencia(pPilha, vSQP[7]);
-
-		}
-
-		if (i >= 44 && i < 49){
-			SQP_adicionaNaSequencia(pPilha, vSQP[8]);
-
-		}
-
-		if (i >= 49 && i < 54){
-			SQP_adicionaNaSequencia(pPilha, vSQP[9]);
-
-		}
-
+	
 		PILHA_popPilha(pPilha, &cCarta);
 		CAR_destruirCarta(cCarta);
 	}
@@ -246,10 +242,14 @@ int  ESP_iniciaNovoJogo(LIS_tppLista * ListaPrincipal){
 	LIS_tppLista sSeqFinal;
 	LIS_tppLista sSeqPrincipal;
 	
-	MOR_tpMorto morto;
+	MOR_tpMorto morto = NULL;
 	SQP_tpSQPrincipal sqPrincipal[10];
 	BAR_tpBaralho baralho;
 	SQF_tpSQFinal sqFinal[8] = { NULL };
+
+	for (i = 0; i < 10; i++){
+		SQP_criarSequencia(&sqPrincipal[i]);
+	}
 
 	dificuldade = escolheDificuldade();
 
@@ -277,10 +277,10 @@ int  ESP_iniciaNovoJogo(LIS_tppLista * ListaPrincipal){
 	LIS_InserirElementoAntes(mMorto, morto);
 
 	for (i = 0; i < 10; i++){
-		LIS_InserirElementoAntes(mMorto, sqPrincipal[i]);
+		LIS_InserirElementoAntes(sSeqPrincipal, sqPrincipal[i]);
 	}
 	for (i = 0; i < 8; i++){
-		LIS_InserirElementoAntes(mMorto, sqFinal[i]);
+		LIS_InserirElementoAntes(sSeqFinal, sqFinal[i]);
 	}
 
 	return 0;
@@ -329,8 +329,7 @@ int ESP_salvaJogo(LIS_tppLista ListaPrincipal, char nome[]){
 	SQP_tpSQPrincipal sqPrincipal;
 	SQF_tpSQFinal sqFinal;
 	CAR_tpCarta carta;
-	
-	//SQF_tpSQFinal sqFinal; ?????????????????????
+
 	MOR_tpMorto morto;
 	PILHA_tpPilha pilhaMorto;
 	PILHA_tpPilha pilha;
@@ -486,14 +485,16 @@ int  ESP_CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
 
 	LIS_CriarLista(&lBaralho, DestruirBaralho);
 	LIS_CriarLista(&lMorto, DestruirMorto);
-	LIS_CriarLista(&lSeqPrincipal, DestruirSeqPrincipal);
 	LIS_CriarLista(&lSeqFinal, DestruirSeqFinal);
+	LIS_CriarLista(&lSeqPrincipal, DestruirSeqPrincipal);
+	
 	
 
 	LIS_InserirElementoApos(*ListaPrincipal, lBaralho);
 	LIS_InserirElementoApos(*ListaPrincipal, lMorto);
-	LIS_InserirElementoApos(*ListaPrincipal, lSeqPrincipal);
 	LIS_InserirElementoApos(*ListaPrincipal, lSeqFinal);
+	LIS_InserirElementoApos(*ListaPrincipal, lSeqPrincipal);
+
 
 
 	FILE *salvo = fopen(nome, "r");
@@ -654,4 +655,114 @@ int  ESP_CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
 	fclose(salvo);
 
 	return 0;
+}
+
+void ESP_ImprimeJogo(LIS_tppLista ListaPrincipal){
+	int i;
+	int numero;
+	char face;
+	char naipe;
+	char posicao;
+
+	LIS_tppLista listaSqPrincipal;
+	//LIS_tppLista listaSqFinal;
+	LIS_tppLista lMorto;
+	SQP_tpSQPrincipal sqPrincipal;
+	//SQF_tpSQFinal sqFinal;
+	CAR_tpCarta carta;
+
+	MOR_tpMorto morto;
+	PILHA_tpPilha pilha;
+	PILHA_tpPilha auxiliar;
+	PILHA_tpPilha pPilha;
+
+	PILHA_criarPilha(&auxiliar);
+	
+
+	LIS_CriarLista(&listaSqPrincipal, DestruirLista);
+
+	LIS_IrInicioLista(ListaPrincipal);
+	LIS_AvancarElementoCorrente(ListaPrincipal, 3);
+	LIS_ObterValor(ListaPrincipal, (void**)&listaSqPrincipal);
+
+
+	for (i = 0; i < 10; i++){
+		printf("%d - ", i);
+		LIS_IrInicioLista(listaSqPrincipal);
+		LIS_AvancarElementoCorrente(listaSqPrincipal, i);
+		LIS_ObterValor(listaSqPrincipal, (void**)&sqPrincipal);
+
+		SQP_retornaPilha(sqPrincipal, &pilha);
+
+		while (PILHA_verificaPilhaVazia(pilha) == PILHA_CondRetOK){
+			CAR_criarCarta(&carta);
+			PILHA_popPilha(pilha, &carta);
+			CAR_retornaPosicao(carta, &posicao);
+			CAR_retornaNaipe(carta, &naipe);
+			CAR_retornaFace(carta, &face);
+			CAR_editarCarta(carta, face, naipe, posicao);
+			PILHA_pushPilha(auxiliar, carta);
+		}
+		while (PILHA_verificaPilhaVazia(auxiliar) == PILHA_CondRetOK){
+			CAR_criarCarta(&carta);
+			PILHA_popPilha(auxiliar, &carta);
+			CAR_retornaPosicao(carta, &posicao);
+			CAR_retornaNaipe(carta, &naipe);
+			CAR_retornaFace(carta, &face);
+			if (face == 'V'){
+				printf("%c%c ", naipe, posicao);
+			}
+			else{
+				printf("%c ", 223);
+			}
+
+			SQP_retornaPilha(sqPrincipal, &pilha);
+		}
+		printf("\n");
+	}
+
+
+	LIS_IrInicioLista(ListaPrincipal);
+	LIS_AvancarElementoCorrente(ListaPrincipal, 1);
+	LIS_ObterValor(ListaPrincipal, (void**)&lMorto);
+	LIS_ObterValor(lMorto, (void**)&morto);
+
+
+	PILHA_criarPilha(&pPilha);
+
+	MOR_retornaMorto(morto, &pPilha);
+
+	PILHA_retornaNumElem(pPilha, &numero);
+	printf("Morto: %d\n", numero);
+
+}
+
+
+int main(void){
+	LIS_tppLista ListaPrincipal;
+	int opcao;
+
+	printf("Bem vindo a Interface Bem Bosta!\n");
+	printf("Escolha a opcao desejada: \n");
+	printf("1 - Para iniciar um novo Jogo.\n");
+	printf("2 - Para carregar um jogo salvo.\n");
+	printf("3 - Para sair do jogo.\n");
+	printf("Digite a opcao escolhida:\n");
+	scanf("%d", &opcao);
+
+	if (opcao == 1){
+		ESP_iniciaNovoJogo(&ListaPrincipal);
+		ESP_ImprimeJogo(ListaPrincipal);
+
+	}
+
+	else if (opcao == 2){
+
+	}
+
+	else if (opcao == 3){
+		printf("O Jogo sera fechado!\n");
+		exit(1);
+	}
+
 }

@@ -170,6 +170,8 @@ PILHA_tpCondRet PILHA_verificaPilhaVazia(PILHA_tpPilha pPilha);
 ***********************************************************************/
 PILHA_tpCondRet PILHA_imprimePilha(PILHA_tpPilha pPilha);
 
+PILHA_tpCondRet PILHA_retornaNumElem(PILHA_tpPilha pPilha, int *num);
+
 #undef PILHADECARTAS_EXT
 
 /********** Fim do módulo de definição: PILHA PilhadeCartas **********/

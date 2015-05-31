@@ -105,4 +105,10 @@ SQF_tpCondRet SQF_inicializaSQFinal(SQF_tpSQFinal SQFinal, PILHA_tpPilha sqFinal
 
 }/* Fim função: SQF inicializa SQFinal */
 
+SQF_tpCondRet SQF_retornaPilha(SQF_tpSQFinal SQF, PILHA_tpPilha *pPilha){
+	(*pPilha) = SQF->sqFinal;
+
+	return SQF_CondRetOK;
+}
+
 /********** Fim do módulo de implementação: SQF Sequencias Finais **********/

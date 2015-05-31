@@ -346,7 +346,7 @@ LIS_tpCondRet LIS_AvancarElementoCorrente(LIS_tppLista pLista,
 *     LIS_CondRetListaVazia   - se a lista estiver vazia
 *
 ***********************************************************************/
-LIS_tpCondRet LIS_retornaNumElementos(LIS_tppLista pLista);
+LIS_tpCondRet LIS_retornaNumElementos(LIS_tppLista pLista, int *Num);
 
 /***********************************************************************
 *

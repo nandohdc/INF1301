@@ -109,7 +109,7 @@ MOR_tpCondRet MOR_popMorto(MOR_tpMorto mMorto, CAR_tpCarta * cartaPop){
 }/* Fim função: MOR pop Morto */
 
 MOR_tpCondRet MOR_retornaMorto(MOR_tpMorto mMorto, PILHA_tpPilha * pilha){
-	pilha = mMorto->morto;
+	(*pilha) = mMorto->morto;
 	return MOR_CondRetOK;
 }
 

@@ -613,7 +613,9 @@ tpElemLista * CriarElemento(LIS_tppLista pLista,
 *  $FC Função: LIS  -Retorna Num Elementos
 *
 ***********************************************************************/
-LIS_tpCondRet LIS_retornaNumElementos(LIS_tppLista pLista){
+LIS_tpCondRet LIS_retornaNumElementos(LIS_tppLista pLista, int *Num){
+	*Num = pLista->numElem;
+
 	if (pLista->numElem == 0){
 		return LIS_CondRetListaVazia;
 	}

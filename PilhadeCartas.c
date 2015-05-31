@@ -150,7 +150,9 @@ PILHA_tpCondRet PILHA_liberaPilha(PILHA_tpPilha pPilha){
 *
 ***********************************************************************/
 PILHA_tpCondRet PILHA_verificaPilhaVazia(PILHA_tpPilha pPilha){
-	if (LIS_retornaNumElementos(pPilha->topo) == LIS_CondRetOK){
+	int n;
+
+	if (LIS_retornaNumElementos(pPilha->topo, &n) == LIS_CondRetOK){
 		return PILHA_CondRetOK;
 	}
 	else{
@@ -211,6 +213,12 @@ PILHA_tpCondRet PILHA_imprimePilha(PILHA_tpPilha pPilha){
 	}
 	return PILHA_CondRetOK;
 }/* Fim função: PILHA imprime Pilha */
+
+PILHA_tpCondRet PILHA_retornaNumElem(PILHA_tpPilha pPilha, int *num){
+	LIS_retornaNumElementos(pPilha->topo, num);
+	return PILHA_CondRetOK;
+}
+
 
 void DestruirCarta(void * pValor)
 {
