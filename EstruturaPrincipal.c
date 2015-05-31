@@ -237,28 +237,30 @@ int  distribuiBaralho(BAR_tpBaralho pBaralho, SQP_tpSQPrincipal vSQP[], MOR_tpMo
 int  ESP_iniciaNovoJogo(LIS_tppLista * ListaPrincipal){
 	int dificuldade;
 	int i;
-	LIS_tppLista bBaralho;
-	LIS_tppLista mMorto;
-	LIS_tppLista sSeqFinal;
-	LIS_tppLista sSeqPrincipal;
+	LIS_tppLista bBaralho = NULL;
+	LIS_tppLista mMorto = NULL;
+	LIS_tppLista sSeqFinal = NULL;
+	LIS_tppLista sSeqPrincipal = NULL;
 	
-	MOR_tpMorto morto = NULL;
+	MOR_tpMorto morto;
 	SQP_tpSQPrincipal sqPrincipal[10];
-	BAR_tpBaralho baralho;
-	SQF_tpSQFinal sqFinal[8] = { NULL };
+	BAR_tpBaralho baralho = NULL;
+	SQF_tpSQFinal sqFinal[8];
 
 	for (i = 0; i < 10; i++){
 		SQP_criarSequencia(&sqPrincipal[i]);
 	}
 
 	dificuldade = escolheDificuldade();
-
+	
+	LIS_CriarLista(ListaPrincipal, DestruirLista);
+	
 	LIS_CriarLista(&bBaralho, DestruirBaralho);
 	LIS_CriarLista(&mMorto, DestruirMorto);
 	LIS_CriarLista(&sSeqFinal, DestruirSeqFinal);
 	LIS_CriarLista(&sSeqPrincipal, DestruirSeqPrincipal);
 
-	LIS_CriarLista(ListaPrincipal, DestruirLista);
+	
 
 	LIS_InserirElementoApos(*ListaPrincipal, bBaralho);
 	LIS_InserirElementoApos(*ListaPrincipal, mMorto);
@@ -272,7 +274,7 @@ int  ESP_iniciaNovoJogo(LIS_tppLista * ListaPrincipal){
 
 	LIS_InserirElementoApos(bBaralho, baralho);
 
-	distribuiBaralho(baralho, sqPrincipal, morto);
+	distribuiBaralho(baralho, sqPrincipal, &morto);
 
 	LIS_InserirElementoAntes(mMorto, morto);
 
@@ -658,33 +660,37 @@ int  ESP_CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
 }
 
 void ESP_ImprimeJogo(LIS_tppLista ListaPrincipal){
+	
+	
 	int i;
 	int numero;
 	char face;
 	char naipe;
 	char posicao;
 
-	LIS_tppLista listaSqPrincipal;
+	LIS_tppLista listaSqPrincipal = NULL;
 	//LIS_tppLista listaSqFinal;
 	LIS_tppLista lMorto;
-	SQP_tpSQPrincipal sqPrincipal;
+	SQP_tpSQPrincipal sqPrincipal = NULL;
 	//SQF_tpSQFinal sqFinal;
 	CAR_tpCarta carta;
 
 	MOR_tpMorto morto;
 	PILHA_tpPilha pilha;
-	PILHA_tpPilha auxiliar;
+	PILHA_tpPilha auxiliar = NULL;
 	PILHA_tpPilha pPilha;
 
-	PILHA_criarPilha(&auxiliar);
+	//PILHA_criarPilha(&auxiliar);
 	
-
-	LIS_CriarLista(&listaSqPrincipal, DestruirLista);
+	//SQP_criarSequencia(&sqPrincipal);
+	//LIS_CriarLista(&listaSqPrincipal, DestruirSeqPrincipal);
 
 	LIS_IrInicioLista(ListaPrincipal);
-	LIS_AvancarElementoCorrente(ListaPrincipal, 3);
+	LIS_AvancarElementoCorrente(ListaPrincipal, 2);
 	LIS_ObterValor(ListaPrincipal, (void**)&listaSqPrincipal);
 
+	LIS_CriarLista(&lMorto, DestruirMorto);
+	
 
 	for (i = 0; i < 10; i++){
 		printf("%d - ", i);
@@ -718,10 +724,10 @@ void ESP_ImprimeJogo(LIS_tppLista ListaPrincipal){
 
 			SQP_retornaPilha(sqPrincipal, &pilha);
 		}
-		printf("\n");
+		//printf("\n");
 	}
 
-
+	/*
 	LIS_IrInicioLista(ListaPrincipal);
 	LIS_AvancarElementoCorrente(ListaPrincipal, 1);
 	LIS_ObterValor(ListaPrincipal, (void**)&lMorto);
@@ -734,12 +740,12 @@ void ESP_ImprimeJogo(LIS_tppLista ListaPrincipal){
 
 	PILHA_retornaNumElem(pPilha, &numero);
 	printf("Morto: %d\n", numero);
-
+	*/
 }
 
 
 int main(void){
-	LIS_tppLista ListaPrincipal;
+	LIS_tppLista ListaPrincipal = NULL;
 	int opcao;
 
 	printf("Bem vindo a Interface Bem Bosta!\n");
@@ -747,6 +753,7 @@ int main(void){
 	printf("1 - Para iniciar um novo Jogo.\n");
 	printf("2 - Para carregar um jogo salvo.\n");
 	printf("3 - Para sair do jogo.\n");
+	printf("4 - Para tacar fogo no baralho.\n");
 	printf("Digite a opcao escolhida:\n");
 	scanf("%d", &opcao);
 

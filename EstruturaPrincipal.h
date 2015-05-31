@@ -59,11 +59,11 @@ typedef enum{
 
 } ESP_tpCondRet;
 
-ESP_tpCondRet criaEstruturaPrincipal(ESP_tpEstruturalPrincipal *eESP);
-ESP_tpCondRet escolheDificuldade(int *dificuldade);
-ESP_tpCondRet distribuiMortoJogo(MOR_tpMorto mMorto);
+//ESP_tpCondRet criaEstruturaPrincipal(ESP_tpEstruturalPrincipal *eESP);
+//ESP_tpCondRet escolheDificuldade(int *dificuldade);
+//ESP_tpCondRet distribuiMortoJogo(MOR_tpMorto mMorto);
 
-ESP_tpCondRet ESP_realizaJogada(LIS_tppLista ListaPrincipal, int origem, int destino, CAR_tpCarta carta);
+//ESP_tpCondRet ESP_realizaJogada(LIS_tppLista ListaPrincipal, int origem, int destino, CAR_tpCarta carta);
 
 #undef ESTRUTURAPRINCIPAL_EXT /*NAO APAGAR*/
 
