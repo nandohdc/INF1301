@@ -316,6 +316,24 @@ BAR_tpCondRet BAR_imprimeBaralho(BAR_tpBaralho baralho){
 	return BAR_CondRetOK;
 } /* Fim função: BAR Imprime Baralho */ 
 
+BAR_tpCondRet BAR_popBaralho(BAR_tpBaralho bBaralho, CAR_tpCarta *cCarta){
+	if (bBaralho->pBCartas == NULL){
+		*cCarta = NULL;
+		return BAR_CondRetBaralhoVazio;
+	}
+
+	if (PILHA_verificaPilhaVazia(bBaralho->pBCartas) == PILHA_CondRetPilhaVazia){
+		*cCarta = NULL;
+		return BAR_CondRetBaralhoPilhaVazia;
+	}
+
+	PILHA_popPilha(bBaralho->pBCartas, cCarta);
+
+	return BAR_CondRetOK;
+
+}
+
+
 BAR_tpCondRet BAR_retornaTopoBaralho(BAR_tpBaralho baralho, PILHA_tpPilha *pilha){
 	(*pilha) = baralho->pBCartas;
 	return BAR_CondRetOK;

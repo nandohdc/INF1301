@@ -67,9 +67,9 @@ CAR_tpCondRet CAR_criarCarta(CAR_tpCarta *pCarta){
 		return CAR_CondRetMemoria;
 	}
 
-	(*pCarta)->face = NULL;
-	(*pCarta)->naipe = NULL;
-	(*pCarta)->posicao = NULL;
+	(*pCarta)->face;
+	(*pCarta)->naipe;
+	(*pCarta)->posicao;
 
 	return CAR_CondRetOK;
 

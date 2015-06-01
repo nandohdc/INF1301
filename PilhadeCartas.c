@@ -78,7 +78,7 @@ PILHA_tpCondRet PILHA_pushPilha(PILHA_tpPilha pPilha, CAR_tpCarta c){
 	LIS_IrInicioLista(pPilha->topo);
 	
 	LIS_InserirElementoAntes(pPilha->topo, c);
-
+	
 	return PILHA_CondRetOK;
 
 }/* Fim função: PILHA push Pilha */

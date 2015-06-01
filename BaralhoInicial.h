@@ -58,8 +58,10 @@ typedef enum{
 	BAR_CondRetFaltouMemoria = 3,
 	/*Excedeu limite de memoria*/
 
-	BAR_CondRetBaralhoVazio = 4
+	BAR_CondRetBaralhoVazio = 4,
 	/*Baralho vazio*/
+
+	BAR_CondRetBaralhoPilhaVazia = 5
 
 } BAR_tpCondRet;
 
@@ -150,6 +152,8 @@ BAR_tpCondRet BAR_embaralharBaralho(BAR_tpBaralho pBaralho);
 BAR_tpCondRet BAR_imprimeBaralho(BAR_tpBaralho baralho);
 
 BAR_tpCondRet BAR_retornaTopoBaralho(BAR_tpBaralho baralho, PILHA_tpPilha *pilha);
+
+BAR_tpCondRet BAR_popBaralho(BAR_tpBaralho bBaralho, CAR_tpCarta *cCarta);
 
 
 #undef BARALHO_INICIAL_EXT

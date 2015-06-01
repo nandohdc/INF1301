@@ -335,7 +335,7 @@ SQP_tpCondRet SQP_verificaSequenciaCompleta(SQP_tpSQPrincipal SQP){
 } /* Fim função: SQP verifica Sequencia Completa */
 
 SQP_tpCondRet SQP_retornaPilha(SQP_tpSQPrincipal sqp, PILHA_tpPilha * pilha){
-	*pilha = sqp->sqPrincipal;
+	(*pilha) = sqp->sqPrincipal;
 
 	return SQP_CondRetOK;
 }

@@ -34,6 +34,18 @@
 #include"LISTA.h"
 
 
+void CriaPilha(PILHA_tpPilha *pPilha, BAR_tpBaralho bBaralho, int nCartas){
+	int i;
+	CAR_tpCarta cCarta;
+	
+	PILHA_criarPilha(pPilha);
+
+	for (i = 0; i < nCartas; i++){
+		BAR_popBaralho(bBaralho, &cCarta);
+		PILHA_pushPilha(*pPilha, cCarta);
+	}
+
+}
 
 void DestruirLista(void * pLista)
 {
@@ -96,6 +108,93 @@ int escolheDificuldade(void){// criar na main uma variavel para receber o retorn
 
 }
 
+
+int  distribuiBaralho(BAR_tpBaralho pBaralho, SQP_tpSQPrincipal vSQP[], MOR_tpMorto mMorto[]){
+	int i;
+	PILHA_tpPilha pMorto[5];
+	PILHA_tpPilha pSQP[10];
+
+	for (i = 0; i < 5; i++){
+		CriaPilha(&pMorto[i], pBaralho, 10);
+		MOR_criarMorto(&mMorto[i], pMorto[i]);
+		PILHA_liberaPilha(pMorto[i]);
+	}
+
+	for (i = 0; i < 10; i++){
+		if (i < 6){
+			CriaPilha(&pSQP[i], pBaralho, 5);
+			SQP_criarSequencia(&vSQP[i]);
+			SQP_adicionaNaSequencia(pSQP[i], vSQP[i]);
+			PILHA_liberaPilha(pSQP[i]);
+		}
+
+		else{
+			CriaPilha(&pSQP[i], pBaralho, 6);
+			SQP_criarSequencia(&vSQP[i]);
+			SQP_adicionaNaSequencia(pSQP[i], vSQP[i]);
+			PILHA_liberaPilha(pSQP[i]);
+		}
+
+
+	}
+		
+	return 0;
+
+}
+
+int  ESP_iniciaNovoJogo(LIS_tppLista * ListaPrincipal){
+	int dificuldade;
+	int i;
+	LIS_tppLista bBaralho = NULL;
+	LIS_tppLista mMorto = NULL;
+	LIS_tppLista sSeqFinal = NULL;
+	LIS_tppLista sSeqPrincipal = NULL;
+	
+	MOR_tpMorto morto[5];
+	SQP_tpSQPrincipal sqPrincipal[10];
+	BAR_tpBaralho baralho = NULL;
+	SQF_tpSQFinal sqFinal[8];
+
+	dificuldade = escolheDificuldade();
+
+	LIS_CriarLista(ListaPrincipal, DestruirLista);
+	
+	LIS_CriarLista(&bBaralho, DestruirBaralho);
+	LIS_CriarLista(&mMorto, DestruirMorto);
+	LIS_CriarLista(&sSeqFinal, DestruirSeqFinal);
+	LIS_CriarLista(&sSeqPrincipal, DestruirSeqPrincipal);
+
+	
+
+	LIS_InserirElementoApos(*ListaPrincipal, bBaralho);
+	LIS_InserirElementoApos(*ListaPrincipal, mMorto);
+	LIS_InserirElementoApos(*ListaPrincipal, sSeqFinal);
+	LIS_InserirElementoApos(*ListaPrincipal, sSeqPrincipal);
+
+	BAR_criarBaralho(&baralho);
+
+	BAR_inicializarBaralho(baralho, dificuldade);
+	BAR_embaralharBaralho(baralho);
+
+	LIS_InserirElementoApos(bBaralho, baralho);
+
+	distribuiBaralho(baralho, sqPrincipal, morto);
+
+	for (i = 0; i < 5; i++){
+		LIS_InserirElementoAntes(mMorto, morto[i]);
+	}
+
+	for (i = 0; i < 10; i++){
+		LIS_InserirElementoAntes(sSeqPrincipal, sqPrincipal[i]);
+	}
+	for (i = 0; i < 8; i++){
+		SQF_criarSQFinal(&sqFinal[i]);
+		LIS_InserirElementoAntes(sSeqFinal, sqFinal[i]); //Optamos fazer SQF igual ao MORTO, somente um pilha de Cartas.
+	}
+	return 0;
+
+}
+
 int  distribuiMortoJogo(LIS_tppLista ListaPrincipal){
 	LIS_tppLista lMorto;
 	LIS_tppLista lSQP;
@@ -127,15 +226,15 @@ int  distribuiMortoJogo(LIS_tppLista ListaPrincipal){
 	for (i = 0; i < 10; i++){
 		LIS_ObterValor(lSQP, (void**)&sSQP[i]);
 		LIS_AvancarElementoCorrente(lSQP, 1); // Andando para proxima lista
-		}
+	}
 
-		
+
 	for (j = 0; j < 10; j++){
 		cRet = CAR_criarCarta(&cCarta);
 		if (cRet == CAR_CondRetMemoria){
 			return 1;
 		}
-		
+
 		MOR_popMorto(mMorto, &cCarta);
 
 		CAR_retornaNaipe(cCarta, &NaipeAntigo);
@@ -146,143 +245,6 @@ int  distribuiMortoJogo(LIS_tppLista ListaPrincipal){
 		SQP_adicionaNaSequencia(pPilha, sSQP[j]);
 		PILHA_popPilha(pPilha, &cCarta);
 		CAR_destruirCarta(cCarta);
-	}
-
-	return 0;
-
-}
-
-
-int  distribuiBaralho(BAR_tpBaralho pBaralho, SQP_tpSQPrincipal vSQP[], MOR_tpMorto mMorto){
-	int i;
-	CAR_tpCondRet cRet;
-	CAR_tpCarta cCarta;
-	PILHA_tpPilha pPilha;
-	PILHA_tpPilha pSQP[10];
-	PILHA_tpCondRet pRet;
-	MOR_tpCondRet mRet;
-	PILHA_tpPilha pBCartas;
-
-	BAR_retornaTopoBaralho(pBaralho, &pBCartas);
-		
-	pRet = PILHA_criarPilha(&pPilha);
-	/*
-	for (i = 0; i < 10; i++){
-		PILHA_criarPilha(&pSQP[i]);
-	}
-	*/
-	for (i = 0; i < 54; i++){
-
-		cRet = CAR_criarCarta(&cCarta);
-		PILHA_popPilha(pBCartas, &cCarta);
-		PILHA_pushPilha(pPilha, cCarta);
-
-		if (i < 6){
-			SQP_pushSQP(vSQP[0], cCarta);
-		}
-
-		else if (i >= 6 && i < 12){
-			SQP_pushSQP(vSQP[1], cCarta);
-		}
-
-		else if (i >= 12 && i < 18){
-			SQP_pushSQP(vSQP[2], cCarta);
-
-		}
-
-		else if (i >= 18 && i < 24){
-			SQP_pushSQP(vSQP[3], cCarta);
-		}
-
-		else if (i >= 24 && i < 29){
-			SQP_pushSQP(vSQP[4], cCarta);
-
-		}
-
-		else if (i >= 29 && i < 34){
-			SQP_pushSQP(vSQP[5], cCarta);
-
-		}
-
-		else if (i >= 34 && i < 39){
-			SQP_pushSQP(vSQP[6], cCarta);
-
-		}
-
-		else if (i >= 39 && i < 44){
-			SQP_pushSQP(vSQP[7], cCarta);
-
-		}
-
-		else if (i >= 44 && i < 49){
-			SQP_pushSQP(vSQP[8], cCarta);
-
-		}
-
-		else if (i >= 49 && i < 54){
-			SQP_pushSQP(vSQP[9], cCarta);
-
-		}
-	
-		PILHA_popPilha(pPilha, &cCarta);
-		CAR_destruirCarta(cCarta);
-	}
-
-	mRet = MOR_criarMorto(&mMorto, pBCartas);
-
-	return 0;
-
-}
-
-int  ESP_iniciaNovoJogo(LIS_tppLista * ListaPrincipal){
-	int dificuldade;
-	int i;
-	LIS_tppLista bBaralho = NULL;
-	LIS_tppLista mMorto = NULL;
-	LIS_tppLista sSeqFinal = NULL;
-	LIS_tppLista sSeqPrincipal = NULL;
-	
-	MOR_tpMorto morto;
-	SQP_tpSQPrincipal sqPrincipal[10];
-	BAR_tpBaralho baralho = NULL;
-	SQF_tpSQFinal sqFinal[8];
-
-	for (i = 0; i < 10; i++){
-		SQP_criarSequencia(&sqPrincipal[i]);
-	}
-
-	dificuldade = escolheDificuldade();
-	
-	LIS_CriarLista(ListaPrincipal, DestruirLista);
-	
-	LIS_CriarLista(&bBaralho, DestruirBaralho);
-	LIS_CriarLista(&mMorto, DestruirMorto);
-	LIS_CriarLista(&sSeqFinal, DestruirSeqFinal);
-	LIS_CriarLista(&sSeqPrincipal, DestruirSeqPrincipal);
-
-	
-
-	LIS_InserirElementoApos(*ListaPrincipal, bBaralho);
-	LIS_InserirElementoApos(*ListaPrincipal, mMorto);
-	LIS_InserirElementoApos(*ListaPrincipal, sSeqFinal);
-	LIS_InserirElementoApos(*ListaPrincipal, sSeqPrincipal);
-
-	BAR_criarBaralho(&baralho);
-
-	BAR_inicializarBaralho(baralho, dificuldade);
-	BAR_embaralharBaralho(baralho);
-
-	LIS_InserirElementoApos(bBaralho, baralho);
-
-	distribuiBaralho(baralho, sqPrincipal, &morto);
-
-	LIS_InserirElementoAntes(mMorto, morto);
-
-	for (i = 0; i < 10; i++){
-		LIS_InserirElementoAntes(sSeqPrincipal, sqPrincipal[i]);
-	}
-	for (i = 0; i < 8; i++){
-		LIS_InserirElementoAntes(sSeqFinal, sqFinal[i]);
 	}
 
 	return 0;
@@ -660,39 +622,45 @@ int  ESP_CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
 }
 
 void ESP_ImprimeJogo(LIS_tppLista ListaPrincipal){
-	
-	
+	int j;
 	int i;
-	int numero;
+	int numeronormal = 0;
+	int numMorto;
+	int numSQF;
 	char face;
 	char naipe;
 	char posicao;
 
 	LIS_tppLista listaSqPrincipal = NULL;
-	//LIS_tppLista listaSqFinal;
+	LIS_tppLista listaSqFinal;
 	LIS_tppLista lMorto;
-	SQP_tpSQPrincipal sqPrincipal = NULL;
-	//SQF_tpSQFinal sqFinal;
 	CAR_tpCarta carta;
-
 	MOR_tpMorto morto;
+	SQF_tpSQFinal sqFinal = NULL;
+	SQP_tpSQPrincipal sqPrincipal = NULL;
+
 	PILHA_tpPilha pilha;
 	PILHA_tpPilha auxiliar = NULL;
 	PILHA_tpPilha pPilha;
+	PILHA_tpPilha pSQF;
 
-	//PILHA_criarPilha(&auxiliar);
-	
+	PILHA_criarPilha(&auxiliar);
+	PILHA_criarPilha(&pilha);
+	PILHA_criarPilha(&pPilha);
+	PILHA_criarPilha(&pSQF);
 	//SQP_criarSequencia(&sqPrincipal);
-	//LIS_CriarLista(&listaSqPrincipal, DestruirSeqPrincipal);
 
 	LIS_IrInicioLista(ListaPrincipal);
-	LIS_AvancarElementoCorrente(ListaPrincipal, 2);
+	LIS_AvancarElementoCorrente(ListaPrincipal, 3);
 	LIS_ObterValor(ListaPrincipal, (void**)&listaSqPrincipal);
 
-	LIS_CriarLista(&lMorto, DestruirMorto);
-	
+	//SQP_adicionaNaSequencia(auxiliar, sqPrincipal);
+
+	LIS_IrInicioLista(listaSqPrincipal);
+
 
 	for (i = 0; i < 10; i++){
+		j = 0;//NAO TIRAR DAQUI!!! SE TIRAR, NAO FUNCIONA.
 		printf("%d - ", i);
 		LIS_IrInicioLista(listaSqPrincipal);
 		LIS_AvancarElementoCorrente(listaSqPrincipal, i);
@@ -706,9 +674,19 @@ void ESP_ImprimeJogo(LIS_tppLista ListaPrincipal){
 			CAR_retornaPosicao(carta, &posicao);
 			CAR_retornaNaipe(carta, &naipe);
 			CAR_retornaFace(carta, &face);
-			CAR_editarCarta(carta, face, naipe, posicao);
+
+			if (j == 0){
+				CAR_editarCarta(carta, 'V', naipe, posicao);
+				j++;
+			}
+			else{
+				CAR_editarCarta(carta, face, naipe, posicao);
+			}
+
 			PILHA_pushPilha(auxiliar, carta);
 		}
+
+
 		while (PILHA_verificaPilhaVazia(auxiliar) == PILHA_CondRetOK){
 			CAR_criarCarta(&carta);
 			PILHA_popPilha(auxiliar, &carta);
@@ -724,23 +702,39 @@ void ESP_ImprimeJogo(LIS_tppLista ListaPrincipal){
 
 			SQP_retornaPilha(sqPrincipal, &pilha);
 		}
-		//printf("\n");
+		printf("\n");
 	}
 
-	/*
+
 	LIS_IrInicioLista(ListaPrincipal);
 	LIS_AvancarElementoCorrente(ListaPrincipal, 1);
 	LIS_ObterValor(ListaPrincipal, (void**)&lMorto);
-	LIS_ObterValor(lMorto, (void**)&morto);
 
+	for (i = 0; i < 5; i++){
+		LIS_IrInicioLista(lMorto);
+		LIS_AvancarElementoCorrente(lMorto, i);
+		LIS_ObterValor(lMorto, (void**)&morto);
+		MOR_retornaMorto(morto, &pPilha);
+		PILHA_retornaNumElem(pPilha, &numMorto);
+		numeronormal = numMorto + numeronormal;
+	}
+	printf("Morto: %d\n", (numeronormal / 10));
 
-	PILHA_criarPilha(&pPilha);
+	LIS_IrInicioLista(ListaPrincipal);
+	LIS_AvancarElementoCorrente(ListaPrincipal, 2);
+	LIS_ObterValor(ListaPrincipal, (void**)&listaSqFinal);
 
-	MOR_retornaMorto(morto, &pPilha);
+	numeronormal = 0;
+	for (i = 0; i < 8; i++){
+		LIS_IrInicioLista(listaSqFinal);
+		LIS_AvancarElementoCorrente(listaSqFinal, i);
+		LIS_ObterValor(listaSqFinal, (void**)&sqFinal);
+		SQF_retornaPilha(sqFinal, &pSQF);
+		PILHA_retornaNumElem(pSQF, &numSQF);
+		numeronormal = numSQF + numeronormal;
+	}
+	printf("Sequencias Completas: %d\n", (numeronormal / 13));
 
-	PILHA_retornaNumElem(pPilha, &numero);
-	printf("Morto: %d\n", numero);
-	*/
 }
 
 
