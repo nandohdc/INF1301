@@ -741,6 +741,7 @@ void ESP_ImprimeJogo(LIS_tppLista ListaPrincipal){
 int main(void){
 	LIS_tppLista ListaPrincipal = NULL;
 	int opcao;
+	char escolha;
 
 	printf("Bem vindo a Interface Bem Bosta!\n");
 	printf("Escolha a opcao desejada: \n");
@@ -754,7 +755,30 @@ int main(void){
 	if (opcao == 1){
 		ESP_iniciaNovoJogo(&ListaPrincipal);
 		ESP_ImprimeJogo(ListaPrincipal);
+		while (1){
+			printf("Proximo comando:\n");
+			printf("S - Para Salvar o Jogo\n");
+			printf("F - Para Fechar o Jogo\n");
+			printf("C - Para Continuar o Jogo\n");
+			scanf("%c", &escolha);
 
+			if (escolha == 'S'){
+
+			}
+
+			else if (escolha == 'F'){
+
+			}
+
+			else if (escolha == 'C'){
+
+			}
+
+			else{
+				printf("Opcao digitada invalida!\n");
+				printf("Digite a opcao novamente!\n");
+			}
+		}
 	}
 
 	else if (opcao == 2){
