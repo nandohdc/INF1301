@@ -38,7 +38,7 @@
 void CriaPilha(PILHA_tpPilha *pPilha, BAR_tpBaralho bBaralho, int nCartas){
 	int i;
 	CAR_tpCarta cCarta;
-	
+
 	PILHA_criarPilha(pPilha);
 
 	for (i = 0; i < nCartas; i++){
@@ -89,16 +89,16 @@ int checarDificuldade(int dificuldade){
 
 int escolheDificuldade(void){// criar na main uma variavel para receber o retorno dessa funcao
 	int dificuldade;
-	
+
 	printf("Escolha o nivel de dificuldade:\n");
-	
+
 	printf("1 -> 1 Naipe  -> Facil\n");
 	printf("2 -> 2 Naipes -> Medio\n");
 	printf("3 -> 3 Naipes -> Dificil\n");
 	printf("4 -> 4 Naipes -> Muito Dificil\n");
-	
+
 	printf("Digite o nivel escolhido :\n");
-	
+
 	scanf("%d", &dificuldade);
 
 	if (checarDificuldade(dificuldade) == 1){
@@ -138,7 +138,7 @@ int  distribuiBaralho(BAR_tpBaralho pBaralho, SQP_tpSQPrincipal vSQP[], MOR_tpMo
 
 
 	}
-		
+
 	return 0;
 
 }
@@ -150,7 +150,7 @@ int  ESP_iniciaNovoJogo(LIS_tppLista * ListaPrincipal){
 	LIS_tppLista mMorto = NULL;
 	LIS_tppLista sSeqFinal = NULL;
 	LIS_tppLista sSeqPrincipal = NULL;
-	
+
 	MOR_tpMorto morto[5];
 	SQP_tpSQPrincipal sqPrincipal[10];
 	BAR_tpBaralho baralho = NULL;
@@ -159,13 +159,13 @@ int  ESP_iniciaNovoJogo(LIS_tppLista * ListaPrincipal){
 	dificuldade = escolheDificuldade();
 
 	LIS_CriarLista(ListaPrincipal, DestruirLista);
-	
+
 	LIS_CriarLista(&bBaralho, DestruirBaralho);
 	LIS_CriarLista(&mMorto, DestruirMorto);
 	LIS_CriarLista(&sSeqFinal, DestruirSeqFinal);
 	LIS_CriarLista(&sSeqPrincipal, DestruirSeqPrincipal);
 
-	
+
 
 	LIS_InserirElementoApos(*ListaPrincipal, bBaralho);
 	LIS_InserirElementoApos(*ListaPrincipal, mMorto);
@@ -217,16 +217,18 @@ int  distribuiMortoJogo(LIS_tppLista ListaPrincipal){
 	LIS_ObterValor(ListaPrincipal, (void**)&lMorto);
 
 	LIS_IrInicioLista(ListaPrincipal);
-	LIS_AvancarElementoCorrente(ListaPrincipal, 2);
+	LIS_AvancarElementoCorrente(ListaPrincipal, 3);
 	LIS_ObterValor(ListaPrincipal, (void**)&lSQP);
 
-	LIS_IrFinalLista(lMorto);
+	LIS_IrInicioLista(lMorto);
 	LIS_ObterValor(lMorto, (void**)&mMorto);
 
-	LIS_IrInicioLista(lSQP);
+	
 	for (i = 0; i < 10; i++){
+		LIS_IrInicioLista(lSQP);
+		LIS_AvancarElementoCorrente(lSQP, i); // Andando para proxima lista
 		LIS_ObterValor(lSQP, (void**)&sSQP[i]);
-		LIS_AvancarElementoCorrente(lSQP, 1); // Andando para proxima lista
+
 	}
 
 
@@ -242,12 +244,14 @@ int  distribuiMortoJogo(LIS_tppLista ListaPrincipal){
 		CAR_retornaPosicao(cCarta, &PosicaoAntiga);
 		CAR_editarCarta(cCarta, NovaFace, NaipeAntigo, PosicaoAntiga);// VIRANDO A FACE DA CARTA
 
-		PILHA_pushPilha(pPilha, cCarta);
-		SQP_adicionaNaSequencia(pPilha, sSQP[j]);
-		PILHA_popPilha(pPilha, &cCarta);
+		//PILHA_pushPilha(pPilha, cCarta);
+		SQP_pushSQP(sSQP[j], cCarta);
+		//SQP_adicionaNaSequencia(pPilha, sSQP[j]);
+		//PILHA_popPilha(pPilha, &cCarta);
 		CAR_destruirCarta(cCarta);
 	}
 
+	LIS_ExcluirElemento(lMorto);
 	return 0;
 
 }
@@ -256,25 +260,75 @@ int  ESP_realizaJogada(LIS_tppLista ListaPrincipal, int sq_de, int sq_para, CAR_
 
 	SQP_tpSQPrincipal sqDe;
 	SQP_tpSQPrincipal sqPara;
+	SQP_tpCondRet retSQP;
 	LIS_tppLista sSeqPrincipal;
+	CAR_tpCarta cCarta;
+	CAR_tpCarta cAuxiliar;
+	CAR_tpCarta cAuxiliar2;
 	PILHA_tpPilha auxiliar;
+	PILHA_tpPilha auxiliar2;
+	PILHA_tpPilha sSalva;
+	PILHA_tpPilha sSalva2;
+	PILHA_tpPilha pSQP;
+
+	char cNaipe;
+	char cPosicao;
+	char cFace = 'V';
+
+	CAR_retornaNaipe(carta, &cNaipe);
+	CAR_retornaPosicao(carta, &cPosicao);
+
+	CAR_criarCarta(&cCarta);
+	CAR_criarCarta(&cAuxiliar);
+	CAR_criarCarta(&cAuxiliar2);
 	PILHA_criarPilha(&auxiliar);
+	PILHA_criarPilha(&auxiliar2);
+	PILHA_criarPilha(&pSQP);
+	PILHA_criarPilha(&sSalva);
+	PILHA_criarPilha(&sSalva2);
+
+	CAR_editarCarta(cCarta, cFace, cNaipe, cPosicao);
 
 	LIS_IrInicioLista(ListaPrincipal);
 	LIS_AvancarElementoCorrente(ListaPrincipal, 3);
 	LIS_ObterValor(ListaPrincipal, (void**)&sSeqPrincipal);
 
 	LIS_IrInicioLista(sSeqPrincipal);
+	printf("SQde: %d\n", sq_de);
 	LIS_AvancarElementoCorrente(sSeqPrincipal, sq_de);
+	printf("SQde2: %d\n", sq_de);
 	LIS_ObterValor(sSeqPrincipal, (void**)&sqDe);
 
 	LIS_IrInicioLista(sSeqPrincipal);
 	LIS_AvancarElementoCorrente(sSeqPrincipal, sq_para);
 	LIS_ObterValor(sSeqPrincipal, (void**)&sqPara);
 
-	if (SQP_removeDaSequencia(sqDe, carta, &auxiliar) == SQP_CondRetOK){
-		SQP_adicionaNaSequencia(auxiliar, sqPara);
+	if (SQP_removeDaSequencia(sqDe, cCarta, &auxiliar) == SQP_CondRetOK){
+		while (PILHA_verificaPilhaVazia(auxiliar) == PILHA_CondRetOK){
+			PILHA_popPilha(auxiliar, &cAuxiliar2);
+			PILHA_pushPilha(sSalva, cAuxiliar2);
+			PILHA_pushPilha(sSalva2, cAuxiliar2);
+		}
+
+		while (PILHA_verificaPilhaVazia(sSalva2) == PILHA_CondRetOK){
+			PILHA_popPilha(sSalva2, &cAuxiliar2);
+			PILHA_pushPilha(auxiliar, cAuxiliar2);
+		}
+		retSQP = SQP_adicionaNaSequencia(auxiliar, sqPara);
 		//Sacou?
+	}
+
+	if (retSQP != SQP_CondRetOK){
+		while (PILHA_verificaPilhaVazia(sSalva) == PILHA_CondRetOK){
+			PILHA_popPilha(sSalva, &cAuxiliar);
+			PILHA_pushPilha(auxiliar2, cAuxiliar);
+		}
+
+		while (PILHA_verificaPilhaVazia(auxiliar2) == PILHA_CondRetOK){
+			PILHA_popPilha(auxiliar2, &cAuxiliar);
+			SQP_retornaPilha(sqDe, &pSQP);
+			PILHA_pushPilha(pSQP, cAuxiliar);
+		}
 	}
 
 	SQP_verificaSequenciaCompleta(sqPara);
@@ -288,7 +342,7 @@ int ESP_salvaJogo(LIS_tppLista ListaPrincipal, char *nome){
 	char face;
 	int i;
 	FILE *arq;
-	
+
 	LIS_tppLista listaSqPrincipal;
 	LIS_tppLista listaSqFinal;
 	LIS_tppLista lMorto;
@@ -315,13 +369,13 @@ int ESP_salvaJogo(LIS_tppLista ListaPrincipal, char *nome){
 	CAR_criarCarta(&carta);
 	//MOR_criarMorto(&morto, pilhaMorto);
 
-	
+
 	arq = fopen(nome, "w");
 
 	if (arq == NULL){
 		printf("SalvoJogo: ARQ esta nulo!\n");
 	}
-	
+
 	// MORTO
 	LIS_IrInicioLista(ListaPrincipal);
 	LIS_AvancarElementoCorrente(ListaPrincipal, 1);
@@ -332,7 +386,7 @@ int ESP_salvaJogo(LIS_tppLista ListaPrincipal, char *nome){
 		LIS_IrInicioLista(lMorto);
 		LIS_AvancarElementoCorrente(lMorto, i);
 		LIS_ObterValor(lMorto, (void**)&mMorto);
-		
+
 		MOR_retornaMorto(mMorto, &pilhaMorto);
 		fprintf(arq, "%d\n", i);
 		while (PILHA_verificaPilhaVazia(pilhaMorto) == PILHA_CondRetOK){
@@ -344,7 +398,7 @@ int ESP_salvaJogo(LIS_tppLista ListaPrincipal, char *nome){
 			CAR_retornaFace(carta, &face);
 
 			fprintf(arq, "%c%c%c\n", face, naipe, posicao);
-			
+
 			MOR_retornaMorto(mMorto, &pilhaMorto);
 		}
 	}
@@ -366,7 +420,7 @@ int ESP_salvaJogo(LIS_tppLista ListaPrincipal, char *nome){
 		SQP_retornaPilha(sqPrincipal, &pilhaSQP);
 
 		fprintf(arq, "%d\n", i);
-		
+
 		while (PILHA_verificaPilhaVazia(pilhaSQP) == PILHA_CondRetOK){
 			CAR_criarCarta(&cCarta);
 			PILHA_popPilha(pilhaSQP, &cCarta);
@@ -378,7 +432,7 @@ int ESP_salvaJogo(LIS_tppLista ListaPrincipal, char *nome){
 			PILHA_pushPilha(auxiliar, cCarta);
 		}
 		while (PILHA_verificaPilhaVazia(auxiliar) == PILHA_CondRetOK){
-			
+
 			CAR_criarCarta(&cCarta);
 			PILHA_popPilha(auxiliar, &cCarta);
 			CAR_retornaPosicao(cCarta, &posicao);
@@ -429,7 +483,7 @@ int ESP_salvaJogo(LIS_tppLista ListaPrincipal, char *nome){
 
 			SQP_retornaPilha(sqPrincipal, &pilhaSQF);
 		}
-		
+
 	}
 
 	fclose(arq);
@@ -504,14 +558,14 @@ int  ESP_CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
 	LIS_IrInicioLista((*ListaPrincipal));
 	LIS_AvancarElementoCorrente((*ListaPrincipal), 1);
 
-	while (fscanf(salvo, " %c", &opcao) == 1){
+	while (fscanf(salvo, "%c", &opcao) == 1){
 
 		if (opcao == 'M'){
 
-			while (fscanf(salvo, " %d", &nMorto) == 1){
+			while (fscanf(salvo, "%d", &nMorto) == 1){
 
 				if (nMorto == 0){
-					while (fscanf(salvo, " %c%c%c", &face, &naipe, &posicao) == 3){
+					while (fscanf(salvo, "%c%c%c", &face, &naipe, &posicao) == 3){
 						CAR_criarCarta(&cCarta);
 						CAR_editarCarta(cCarta, face, naipe, posicao);
 						printf("FACE: %c ---- NAIPE: %c ---- POSICAO: %c\n", face, naipe, posicao);
@@ -754,20 +808,20 @@ int  ESP_CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
 		LIS_InserirElementoAntes(lMorto, mMorto[i]);
 		PILHA_liberaPilha(pMorto[i]);
 	}
-	
-	
+
+
 	for (i = 0; i < 10; i++){
 		LIS_InserirElementoAntes(lSeqPrincipal, SQP[i]);
 		PILHA_liberaPilha(pSQP[i]);
 	}
-	
+
 	for (i = 0; i < 8; i++){
 		SQF_inicializaSQFinal(SQF[i], pSQF[i]);
 		LIS_InserirElementoAntes(lSeqFinal, SQF[i]);
 		PILHA_liberaPilha(pSQF[i]);
 	}
-	
-	
+
+
 	fclose(salvo);
 
 	return 0;
@@ -784,12 +838,12 @@ void ESP_ImprimeJogo(LIS_tppLista ListaPrincipal){
 	char posicao;
 
 	LIS_tppLista listaSqPrincipal = NULL;
-	LIS_tppLista listaSqFinal;
-	LIS_tppLista lMorto;
+	LIS_tppLista listaSqFinal= NULL;
+	LIS_tppLista lMorto = NULL;
 	CAR_tpCarta carta;
 	MOR_tpMorto morto;
 	SQF_tpSQFinal sqFinal = NULL;
-	SQP_tpSQPrincipal sqPrincipal = NULL;
+	SQP_tpSQPrincipal sqPrincipal= NULL;
 
 	PILHA_tpPilha pilha;
 	PILHA_tpPilha auxiliar = NULL;
@@ -851,9 +905,10 @@ void ESP_ImprimeJogo(LIS_tppLista ListaPrincipal){
 			else{
 				printf("%c ", 223);
 			}
-			PILHA_pushPilha(pilha, carta);
-			SQP_adicionaNaSequencia(pilha, sqPrincipal);
+			//PILHA_pushPilha(pilha, carta);
+			//SQP_adicionaNaSequencia(pilha, sqPrincipal);
 			SQP_retornaPilha(sqPrincipal, &pilha);
+			SQP_pushSQP(sqPrincipal, carta);
 		}
 		printf("\n");
 	}
@@ -868,34 +923,41 @@ void ESP_ImprimeJogo(LIS_tppLista ListaPrincipal){
 		LIS_AvancarElementoCorrente(lMorto, i);
 		LIS_ObterValor(lMorto, (void**)&morto);
 		MOR_retornaMorto(morto, &pPilha);
-		PILHA_retornaNumElem(pPilha, &numMorto);
-		numeronormal = numMorto + numeronormal;
+		LIS_retornaNumElementos(lMorto, &numMorto);
 	}
-	printf("Morto: %d\n", (numeronormal / 10));
+	printf("Morto: %d\n", numMorto);
 
 	LIS_IrInicioLista(ListaPrincipal);
 	LIS_AvancarElementoCorrente(ListaPrincipal, 2);
 	LIS_ObterValor(ListaPrincipal, (void**)&listaSqFinal);
 
-	numeronormal = 0;
 	for (i = 0; i < 8; i++){
 		LIS_IrInicioLista(listaSqFinal);
 		LIS_AvancarElementoCorrente(listaSqFinal, i);
 		LIS_ObterValor(listaSqFinal, (void**)&sqFinal);
 		SQF_retornaPilha(sqFinal, &pSQF);
-		PILHA_retornaNumElem(pSQF, &numSQF);
-		numeronormal = numSQF + numeronormal;
+		LIS_retornaNumElementos(listaSqFinal, &numSQF);
 	}
-	printf("Sequencias Completas: %d\n", (numeronormal / 13));
+	printf("Sequencias Completas: %d\n", numSQF);
 
 }
 
 
 int main(void){
 	LIS_tppLista ListaPrincipal = NULL;
+	LIS_tppLista lMorto = NULL;
+	CAR_tpCarta cCarta;
 	char *NomeArquivo = "JogoSalvo.txt";
+	int SQPde;
+	int SQPpara;
+	int numMorto;
 	int opcao;
 	char escolha;
+	//char face;
+	char naipe;
+	char posicao;
+
+	CAR_criarCarta(&cCarta);
 
 	printf("Bem vindo a Interface Bem Bosta!\n");
 	printf("Escolha a opcao desejada: \n");
@@ -910,29 +972,62 @@ int main(void){
 		ESP_iniciaNovoJogo(&ListaPrincipal);
 		ESP_ImprimeJogo(ListaPrincipal);
 		while (1){
-			
+
 			printf("Proximo comando:\n");
 			printf("S - Para Salvar o Jogo.\n");
 			printf("F - Para Fechar o Jogo.\n");
-			printf("C - Para Continuar o Jogo.\n");
+			printf("J - Para Realizar Jogada.\n");
+			printf("M - Para Utilizar o Morto.\n");
 			scanf(" %c", &escolha);
 
 			if (escolha == 'S'){
 				ESP_salvaJogo(ListaPrincipal, NomeArquivo);
-				
+
 			}
 
 			else if (escolha == 'F'){
 				printf("Fechando programa em 5 seg");
-				
-				
-				
-			}
 
-			else if (escolha == 'C'){
+
 
 			}
 
+			else if (escolha == 'J'){
+				printf("Digite numero da sequencia que deseja remover a carta:\n");
+				scanf("%d", &SQPde);
+				printf("Digite numero da sequencia que deseja adicionar a carta:\n");
+				scanf("%d", &SQPpara);
+
+
+				printf("Digite o naipe da carta que deseja remover:\n");
+				scanf(" %c", &naipe);
+				printf("Digite a posicao da carta que deseja remover:\n");
+				scanf(" %c", &posicao);
+
+				CAR_editarCarta(cCarta, 'V', naipe, posicao);
+
+				ESP_realizaJogada(ListaPrincipal, SQPde, SQPpara, cCarta);
+				ESP_ImprimeJogo(ListaPrincipal);
+
+			}
+
+
+			else if (escolha == 'M'){
+				
+				LIS_IrInicioLista(ListaPrincipal);
+				LIS_AvancarElementoCorrente(ListaPrincipal, 1);
+				LIS_ObterValor(ListaPrincipal, (void**)&lMorto);
+				LIS_retornaNumElementos(lMorto, &numMorto);
+
+				if (numMorto > 0){
+					distribuiMortoJogo(ListaPrincipal);
+					ESP_ImprimeJogo(ListaPrincipal);
+				}
+
+				else{
+					printf("Nao existe morto disponivel!\n");
+				}
+			}
 			else{
 				printf("Opcao digitada invalida!\n");
 				printf("Digite a opcao novamente!\n");

@@ -200,11 +200,11 @@ int checarNaipe(char Naipe){
 ***********************************************************************/
 CAR_tpCondRet CAR_retornaPosicao(CAR_tpCarta pCarta, char* pPosicao){
 	if (pCarta == NULL){
-		return CAR_CondRetCartaNaoExiste; /*carta invalida/nao existe*/
+		return CAR_CondRetCartaNaoExiste;
 	}
 	
 	if (checarPosicao(pCarta->posicao) == 0){
-		return CAR_CondRetPosicaoNaoExiste; /*posicao invalida/nao existe*/
+		return CAR_CondRetPosicaoNaoExiste;
 	}
 
 	*pPosicao = pCarta->posicao;
@@ -223,12 +223,13 @@ CAR_tpCondRet CAR_retornaPosicao(CAR_tpCarta pCarta, char* pPosicao){
 *
 ***********************************************************************/
 CAR_tpCondRet CAR_retornaNaipe(CAR_tpCarta pCarta, char* pNaipe){
+	
 	if (pCarta == NULL){
-		return CAR_CondRetCartaNaoExiste; /*carta invalida/nao existe*/
+		return CAR_CondRetCartaNaoExiste; 
 	}
 
 	if (checarNaipe(pCarta->naipe) == 0){
-		return CAR_CondRetNaipeNaoExiste; /*naipe invalido/nao existe*/
+		return CAR_CondRetNaipeNaoExiste; 
 	}
 
 	*pNaipe = pCarta->naipe;
@@ -246,12 +247,13 @@ CAR_tpCondRet CAR_retornaNaipe(CAR_tpCarta pCarta, char* pNaipe){
 *
 ***********************************************************************/
 CAR_tpCondRet CAR_retornaFace(CAR_tpCarta pCarta, char* pFace){
+	
 	if (pCarta == NULL){
-		return CAR_CondRetCartaNaoExiste; /*carta invalida/nao existe*/
+		return CAR_CondRetCartaNaoExiste;
 	}
 
 	if (checarFace(pCarta->face) == 0){
-		return CAR_CondRetFaceErrada; /*face invalida/nao existe*/
+		return CAR_CondRetFaceErrada;
 	}
 
 	*pFace = pCarta->face;

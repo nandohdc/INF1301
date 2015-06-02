@@ -91,31 +91,30 @@ int busca_vetor(char *vetor, int n, char elemProc){
 *
 ***********************************************************************/
 SQP_tpCondRet SQP_removeDaSequencia(SQP_tpSQPrincipal sqTira, CAR_tpCarta cCarta, PILHA_tpPilha *pPilhaGuarda){
-	
-	
-	char posCarta;
-	char naipeCarta;
-	char faceCarta;
-	CAR_retornaPosicao(cCarta, &posCarta);
-	CAR_retornaNaipe(cCarta, &naipeCarta);
-	CAR_retornaFace(cCarta, &faceCarta);
-
+	PILHA_tpCondRet pRet;
+	PILHA_tpPilha auxiliar;
+	CAR_tpCarta cAuxiliar;
+	CAR_tpCarta cAuxiliar2;
 
 	char posicao;
 	char naipe;
 	char face;
-
 	int ind;
 
-	PILHA_tpCondRet pRet;
-	PILHA_tpPilha auxiliar;
+	char faceCarta;
+	char naipeCarta;
+	char posCarta;
+	
+	CAR_retornaFace(cCarta, &faceCarta);
+	CAR_retornaNaipe(cCarta, &naipeCarta);
+	CAR_retornaPosicao(cCarta, &posCarta);
+
+
 	PILHA_criarPilha(&auxiliar);
-
-	CAR_tpCarta cAuxiliar;
 	CAR_criarCarta(&cAuxiliar);
-	CAR_tpCarta cAuxiliar2;
 	CAR_criarCarta(&cAuxiliar2);
-
+		
+	
 	if (sqTira == NULL){
 		return SQP_CondRetSequenciaVazia;
 	}
@@ -155,9 +154,17 @@ SQP_tpCondRet SQP_removeDaSequencia(SQP_tpSQPrincipal sqTira, CAR_tpCarta cCarta
 		ind = busca_vetor(cartas, 13, posicao);
 
 		if (cartas[ind - 1] != posCarta){
+			while (PILHA_verificaPilhaVazia(auxiliar) == PILHA_CondRetOK){
+				PILHA_popPilha(auxiliar, &cAuxiliar);
+				PILHA_pushPilha(sqTira->sqPrincipal, cAuxiliar);
+			}
 			return SQP_CondRetPosicaoErrada;
 		}
 		if (naipe != naipeCarta){
+			while (PILHA_verificaPilhaVazia(auxiliar) == PILHA_CondRetOK){
+				PILHA_popPilha(auxiliar, &cAuxiliar);
+				PILHA_pushPilha(sqTira->sqPrincipal, cAuxiliar);
+			}
 			return SQP_CondRetNaipeDiferente;
 		}
 		PILHA_pushPilha(*pPilhaGuarda, cAuxiliar);
@@ -205,26 +212,33 @@ SQP_tpCondRet SQP_adicionaNaSequencia(PILHA_tpPilha pPilhaTira, SQP_tpSQPrincipa
 	CAR_retornaNaipe(cAuxiliar, &naipe1);
 	CAR_retornaPosicao(cAuxiliar, &posicao1);
 
-	PILHA_popPilha(auxiliar, &cAuxiliar2);
-	PILHA_pushPilha(auxiliar, cAuxiliar2);
+	//PILHA_popPilha(auxiliar , &cAuxiliar2);
+	//PILHA_pushPilha(auxiliar, cAuxiliar2);
+
+	if (PILHA_verificaPilhaVazia(sqRecebe->sqPrincipal) == PILHA_CondRetOK){
+		PILHA_popPilha(sqRecebe->sqPrincipal, &cAuxiliar2);
+		PILHA_pushPilha(sqRecebe->sqPrincipal, cAuxiliar2);
+	}
 
 	CAR_retornaNaipe(cAuxiliar2, &naipe2);
 	CAR_retornaPosicao(cAuxiliar2, &posicao2);
 	CAR_retornaFace(cAuxiliar2, &face2);
+
+	
 	
 	ind = busca_vetor(cartas, 13, posicao2);
 
 	
-
 	if (face2 == 'E' && PILHA_verificaPilhaVazia(sqRecebe->sqPrincipal) == PILHA_CondRetOK){
 		return SQP_CondRetFaceEscondida;
 	}
-
+	
 	if (naipe1 != naipe2 && PILHA_verificaPilhaVazia(sqRecebe->sqPrincipal) == PILHA_CondRetOK){
 		return SQP_CondRetNaipeDiferente;
 	}
-
+	
 	if (cartas[ind - 1] != posicao1 && PILHA_verificaPilhaVazia(sqRecebe->sqPrincipal) == PILHA_CondRetOK){
+
 		return SQP_CondRetPosicaoErrada;
 	}
 
