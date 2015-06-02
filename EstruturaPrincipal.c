@@ -248,7 +248,7 @@ int  distribuiMortoJogo(LIS_tppLista ListaPrincipal){
 		SQP_pushSQP(sSQP[j], cCarta);
 		//SQP_adicionaNaSequencia(pPilha, sSQP[j]);
 		//PILHA_popPilha(pPilha, &cCarta);
-		CAR_destruirCarta(cCarta);
+		//CAR_destruirCarta(cCarta);
 	}
 
 	LIS_ExcluirElemento(lMorto);
