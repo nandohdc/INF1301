@@ -1,5 +1,5 @@
-/***************************************************************************
-*  $MCI Módulo de implementação: ESP EstruturaPrincipal
+ï»¿/***************************************************************************
+*  $MCI MÃ³dulo de implementaÃ§Ã£o: ESP EstruturaPrincipal
 *
 *  Arquivo gerado:              EstruturaPrincipal.c
 *  Letras identificadoras:      ESP
@@ -12,14 +12,14 @@
 *			mr - Mateus Ribeiro
 *
 *
-*  $HA Histórico de evolução:
-*     Versão  Autor     Data     Observações
-*		4.00 ds/fh/mr 15/05/2015 Uniformização da interface das funções e
-*                                de todas as condições de retorno - Parte II.
-*       3.00 ds/fh/mr 15/05/2015 Uniformização da interface das funções e
-*                                de todas as condições de retorno - Parte I.
-*       2.00 ds/fh/mr 15/05/2015 Eliminação de código duplicado, reestruturação
-*       1.00 ds/fh/mr 15/05/2015 Início do desenvolvimento
+*  $HA HistÃ³rico de evoluÃ§Ã£o:
+*     VersÃ£o  Autor     Data     ObservaÃ§Ãµes
+*		4.00 ds/fh/mr 15/05/2015 UniformizaÃ§Ã£o da interface das funÃ§Ãµes e
+*                                de todas as condiÃ§Ãµes de retorno - Parte II.
+*       3.00 ds/fh/mr 15/05/2015 UniformizaÃ§Ã£o da interface das funÃ§Ãµes e
+*                                de todas as condiÃ§Ãµes de retorno - Parte I.
+*       2.00 ds/fh/mr 15/05/2015 EliminaÃ§Ã£o de cÃ³digo duplicado, reestruturaÃ§Ã£o
+*       1.00 ds/fh/mr 15/05/2015 InÃ­cio do desenvolvimento
 *
 ***************************************************************************/
 #include<stdio.h>
@@ -30,8 +30,8 @@
 #include"BaralhoInicial.h"
 #include"PilhadeCartas.h"
 #include"Morto.h"
-#include"SequênciasPrincipais.h"
-#include"SequênciasFinais.h"
+#include"SequÃªnciasPrincipais.h"
+#include"SequÃªnciasFinais.h"
 #include"LISTA.h"
 
 
@@ -665,6 +665,7 @@ void ESP_ImprimeJogo(LIS_tppLista ListaPrincipal){
 	int numeronormal = 0;
 	int numMorto;
 	int numSQF;
+	int caracter;
 	char face;
 	char naipe;
 	char posicao;
@@ -732,7 +733,20 @@ void ESP_ImprimeJogo(LIS_tppLista ListaPrincipal){
 			CAR_retornaNaipe(carta, &naipe);
 			CAR_retornaFace(carta, &face);
 			if (face == 'V'){
-				printf("%c%c ", naipe, posicao);
+				if (naipe == 'P'){
+					caracter = 5;
+				}
+				if (naipe == 'C'){
+					caracter = 3;
+				}
+				if (naipe == 'E'){
+					caracter = 6;
+				}
+
+				if (naipe == 'O'){
+					caracter = 4;
+				}
+				printf("%c%c ", caracter, posicao);
 			}
 			else{
 				printf("%c ", 223);
