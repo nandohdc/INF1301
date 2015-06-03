@@ -635,6 +635,7 @@ int  ESP_CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
 	BAR_criarBaralho(&baralho);
 
 	LIS_InserirElementoAntes(lBaralho, baralho);
+
 	for (i = 0; i < 5; i++){
 		MOR_criarMorto(&mMorto[i], pMorto[i]);
 		LIS_InserirElementoAntes(lMorto, mMorto[i]);
@@ -818,7 +819,7 @@ int main(void){
 		ESP_iniciaNovoJogo(&ListaPrincipal);
 		ESP_ImprimeJogo(ListaPrincipal);
 		while (1){
-
+			INICIO:
 			printf("Proximo comando:\n");
 			printf("S - Para Salvar o Jogo.\n");
 			printf("F - Para Fechar o Jogo.\n");
@@ -833,9 +834,7 @@ int main(void){
 
 			else if (escolha == 'F'){
 				printf("Fechando programa em 5 seg");
-
-
-
+				
 			}
 
 			else if (escolha == 'J'){
@@ -878,13 +877,14 @@ int main(void){
 				printf("Opcao digitada invalida!\n");
 				printf("Digite a opcao novamente!\n");
 			}
-			//system("cls");
+			
 		}
 	}
 
 	else if (opcao == 2){
 		ESP_CarregaJogoSalvo(&ListaPrincipal, NomeArquivo);
 		ESP_ImprimeJogo(ListaPrincipal);
+		goto INICIO;
 
 	}
 
