@@ -35,7 +35,7 @@ struct sequenciasPrincipais {
 
 //#include "sequenciasPrincipais.h"
 char naipes[4] = { 'E', 'C', 'P', 'O' };
-char cartas[13] = { 'A', '2', '3', '4', '5', '6', '7', '8', '9', '1', 'J', 'Q', 'K' };
+char cartas[13] = { 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K' };
 
 /***********************************************************************
 *
@@ -296,13 +296,12 @@ SQP_tpCondRet SQP_verificaSequenciaCompleta(SQP_tpSQPrincipal SQP){
 		CAR_retornaFace(cAuxiliar, &face);
 		CAR_retornaNaipe(cAuxiliar, &naipe);
 		CAR_retornaPosicao(cAuxiliar, &posicao);
-		CAR_criarCarta(&cAuxiliar);
 		CAR_editarCarta(cAuxiliar, face, naipe, posicao);
 		PILHA_pushPilha(auxiliar2, cAuxiliar);
 		
 	}
 	PILHA_popPilha(auxiliar2, &cAuxiliar);
-	PILHA_pushPilha(auxiliar, cAuxiliar);
+	PILHA_pushPilha(auxiliar2, cAuxiliar);
 
 	CAR_retornaFace(cAuxiliar, &face);
 	CAR_retornaPosicao(cAuxiliar, &posicao);

@@ -108,7 +108,7 @@ BAR_tpCondRet BAR_inicializarBaralho(BAR_tpBaralho pBaralho, int numNaipes){
 	PILHA_tpCondRet pRet;
 	
 	char naipes[4] = { 'E', 'C', 'P', 'O' };
-	char cartas[13] = { 'A', '2', '3', '4', '5', '6', '7', '8', '9', '1', 'J', 'Q', 'K' };
+	char cartas[13] = { 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K' };
 
 	char posicao = '0';
 	char naipe = '0';
