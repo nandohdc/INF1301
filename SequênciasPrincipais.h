@@ -164,6 +164,8 @@ SQP_tpCondRet SQP_retornaPilha(SQP_tpSQPrincipal sqp, PILHA_tpPilha * pilha);
 
 SQP_tpCondRet SQP_pushSQP(SQP_tpSQPrincipal sSQP, CAR_tpCarta cCarta);
 
+SQP_tpCondRet SQP_popSQP(SQP_tpSQPrincipal sSQP, CAR_tpCarta *Carta);
+
 #undef SEQUENCIASPRINCIPAIS_EXT
 
 /********** Fim do módulo de definição: Módulo SQP Sequencias Principais **********/

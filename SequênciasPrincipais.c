@@ -95,6 +95,7 @@ SQP_tpCondRet SQP_removeDaSequencia(SQP_tpSQPrincipal sqTira, CAR_tpCarta cCarta
 	PILHA_tpPilha auxiliar;
 	CAR_tpCarta cAuxiliar;
 	CAR_tpCarta cAuxiliar2;
+	CAR_tpCarta cAuxiliar3;
 
 	char posicao;
 	char naipe;
@@ -113,7 +114,7 @@ SQP_tpCondRet SQP_removeDaSequencia(SQP_tpSQPrincipal sqTira, CAR_tpCarta cCarta
 	PILHA_criarPilha(&auxiliar);
 	CAR_criarCarta(&cAuxiliar);
 	CAR_criarCarta(&cAuxiliar2);
-		
+	CAR_criarCarta(&cAuxiliar3);
 	
 	if (sqTira == NULL){
 		return SQP_CondRetSequenciaVazia;
@@ -131,10 +132,18 @@ SQP_tpCondRet SQP_removeDaSequencia(SQP_tpSQPrincipal sqTira, CAR_tpCarta cCarta
 		CAR_retornaPosicao(cAuxiliar, &posicao);
 		CAR_retornaNaipe(cAuxiliar, &naipe);
 		CAR_retornaFace(cAuxiliar, &face);
+
+		PILHA_pushPilha(auxiliar, cAuxiliar);
+
 		if (face == 'E'){
+			while (PILHA_verificaPilhaVazia(auxiliar)== PILHA_CondRetOK){
+				CAR_criarCarta(&cAuxiliar);
+				PILHA_popPilha(auxiliar, &cAuxiliar);
+				PILHA_pushPilha(sqTira->sqPrincipal, cAuxiliar);
+			}
 			return SQP_CondRetFaceEscondida; // Nao Achou a sequencia para tirar da sequencia
 		}
-		PILHA_pushPilha(auxiliar, cAuxiliar);
+		
 		
 		if (posicao == posCarta && naipe == naipeCarta){
 			break;
@@ -147,17 +156,26 @@ SQP_tpCondRet SQP_removeDaSequencia(SQP_tpSQPrincipal sqTira, CAR_tpCarta cCarta
 	PILHA_pushPilha(*pPilhaGuarda, cAuxiliar);
 
 	while (PILHA_verificaPilhaVazia(auxiliar) == PILHA_CondRetOK){
+		CAR_criarCarta(&cAuxiliar);
 		PILHA_popPilha(auxiliar, &cAuxiliar);
 		CAR_retornaPosicao(cAuxiliar, &posCarta);
 		CAR_retornaNaipe(cAuxiliar, &naipeCarta);
+		CAR_retornaFace(cAuxiliar, &faceCarta);
+		CAR_editarCarta(cAuxiliar3, faceCarta, naipeCarta, posCarta);
 
 		ind = busca_vetor(cartas, 13, posicao);
 
 		if (cartas[ind - 1] != posCarta){
+			while (PILHA_verificaPilhaVazia(*pPilhaGuarda) == PILHA_CondRetOK){
+				PILHA_popPilha(*pPilhaGuarda, &cAuxiliar);
+				PILHA_pushPilha(sqTira->sqPrincipal, cAuxiliar);
+			}
+
 			while (PILHA_verificaPilhaVazia(auxiliar) == PILHA_CondRetOK){
 				PILHA_popPilha(auxiliar, &cAuxiliar);
 				PILHA_pushPilha(sqTira->sqPrincipal, cAuxiliar);
 			}
+			PILHA_pushPilha(sqTira->sqPrincipal, cAuxiliar3);
 			return SQP_CondRetPosicaoErrada;
 		}
 		if (naipe != naipeCarta){
@@ -301,7 +319,7 @@ SQP_tpCondRet SQP_verificaSequenciaCompleta(SQP_tpSQPrincipal SQP){
 		
 	}
 	PILHA_popPilha(auxiliar2, &cAuxiliar);
-	PILHA_pushPilha(auxiliar2, cAuxiliar);
+	//PILHA_pushPilha(auxiliar2, cAuxiliar);
 
 	CAR_retornaFace(cAuxiliar, &face);
 	CAR_retornaPosicao(cAuxiliar, &posicao);
@@ -359,4 +377,9 @@ SQP_tpCondRet SQP_pushSQP(SQP_tpSQPrincipal sSQP, CAR_tpCarta cCarta){
 	return SQP_CondRetOK;
 }
 
+SQP_tpCondRet SQP_popSQP(SQP_tpSQPrincipal sSQP, CAR_tpCarta *Carta){
+	PILHA_popPilha(sSQP->sqPrincipal, Carta);
+
+	return SQP_CondRetOK;
+}
 /********** Fim do módulo de implementação: SQP Sequencias Principais **********/

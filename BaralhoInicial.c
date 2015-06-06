@@ -333,11 +333,5 @@ BAR_tpCondRet BAR_popBaralho(BAR_tpBaralho bBaralho, CAR_tpCarta *cCarta){
 
 }
 
-
-BAR_tpCondRet BAR_retornaTopoBaralho(BAR_tpBaralho baralho, PILHA_tpPilha *pilha){
-	(*pilha) = baralho->pBCartas;
-	return BAR_CondRetOK;
-}
-
 /********** Fim do módulo de implementação: BAR  Baralho Inicial  **********/
 
