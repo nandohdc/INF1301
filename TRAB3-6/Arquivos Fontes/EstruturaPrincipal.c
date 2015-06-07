@@ -262,114 +262,75 @@ int  distribuiMortoJogo(LIS_tppLista ListaPrincipal){
 }
 
 int  ESP_realizaJogada(LIS_tppLista ListaPrincipal, int sq_de, int sq_para, CAR_tpCarta carta){
-
-	SQP_tpSQPrincipal sqDe;
-	SQP_tpSQPrincipal sqPara;
-	SQF_tpSQFinal sSQF;
+	LIS_tppLista lSQP;
 	LIS_tppLista lSQF;
-	SQP_tpCondRet retSQP;
-	LIS_tppLista sSeqPrincipal;
-	CAR_tpCarta cCarta;
-	CAR_tpCarta cAuxiliar;
-	CAR_tpCarta cAuxiliar2;
+	SQP_tpSQPrincipal sqpDE;
+	SQP_tpSQPrincipal sqpPARA;
+	SQF_tpSQFinal sSQF;
+	PILHA_tpPilha pRemove;
 	PILHA_tpPilha pSQF;
-	PILHA_tpPilha auxiliar;
-	PILHA_tpPilha auxiliar2;
-	PILHA_tpPilha sSalva;
-	PILHA_tpPilha sSalva2;
-	PILHA_tpPilha pSQP;
-	PILHA_tpPilha pSqPara;
+	CAR_tpCarta cRemove;
+	CAR_tpCarta cSQF;
+
 	int i;
-	char cNaipe;
-	char cPosicao;
-	char cFace = 'V';
 
-	CAR_retornaNaipe(carta, &cNaipe);
-	CAR_retornaPosicao(carta, &cPosicao);
-
-	CAR_criarCarta(&cCarta);
-	CAR_criarCarta(&cAuxiliar);
-	CAR_criarCarta(&cAuxiliar2);
-	PILHA_criarPilha(&auxiliar);
-	PILHA_criarPilha(&auxiliar2);
-	PILHA_criarPilha(&pSQP);
-	PILHA_criarPilha(&sSalva);
-	PILHA_criarPilha(&sSalva2);
+	PILHA_criarPilha(&pRemove);
+	CAR_criarCarta(&cRemove);
 	PILHA_criarPilha(&pSQF);
-	PILHA_criarPilha(&pSqPara);
-
-	CAR_editarCarta(cCarta, cFace, cNaipe, cPosicao);
-
+	CAR_criarCarta(&cSQF);
+	
 	LIS_IrInicioLista(ListaPrincipal);
 	LIS_AvancarElementoCorrente(ListaPrincipal, 3);
-	LIS_ObterValor(ListaPrincipal, (void**)&sSeqPrincipal);
+	LIS_ObterValor(ListaPrincipal, (void**)&lSQP);
 
-	LIS_IrInicioLista(sSeqPrincipal);
-	LIS_AvancarElementoCorrente(sSeqPrincipal, sq_de);
-	LIS_ObterValor(sSeqPrincipal, (void**)&sqDe);
+	LIS_IrInicioLista(lSQP);
+	LIS_AvancarElementoCorrente(lSQP, sq_de);
+	LIS_ObterValor(lSQP, (void**)&sqpDE);
 
-	LIS_IrInicioLista(sSeqPrincipal);
-	LIS_AvancarElementoCorrente(sSeqPrincipal, sq_para);
-	LIS_ObterValor(sSeqPrincipal, (void**)&sqPara);
+	LIS_IrInicioLista(lSQP);
+	LIS_AvancarElementoCorrente(lSQP, sq_para);
+	LIS_ObterValor(lSQP, (void**)&sqpPARA);
 
-	if (SQP_removeDaSequencia(sqDe, cCarta, &auxiliar) == SQP_CondRetOK){
-		while (PILHA_verificaPilhaVazia(auxiliar) == PILHA_CondRetOK){
-			PILHA_popPilha(auxiliar, &cAuxiliar2);
-			PILHA_pushPilha(sSalva, cAuxiliar2);
-			PILHA_pushPilha(sSalva2, cAuxiliar2);
-		}
+	if (SQP_removeDaSequencia(sqpDE, carta, &pRemove) == SQP_CondRetOK){
+		if (SQP_adicionaNaSequencia(pRemove, sqpPARA) == SQP_CondRetOK){
+			if (SQP_verificaSequenciaCompleta(sqpPARA) == SQP_CondRetOK){
+				LIS_IrInicioLista(ListaPrincipal);
+				LIS_AvancarElementoCorrente(ListaPrincipal, 2);
+				LIS_ObterValor(ListaPrincipal, (void**)&lSQF);
 
-		while (PILHA_verificaPilhaVazia(sSalva2) == PILHA_CondRetOK){
-			PILHA_popPilha(sSalva2, &cAuxiliar2);
-			PILHA_pushPilha(auxiliar, cAuxiliar2);
-		}
-		retSQP = SQP_adicionaNaSequencia(auxiliar, sqPara);
-		//Sacou?
-	}
+				for (i = 0; i < 8; i++){
+					LIS_IrInicioLista(lSQF);
+					LIS_AvancarElementoCorrente(lSQF, i);
+					LIS_ObterValor(lSQF, (void**)&sSQF);
+					SQF_retornaPilha(sSQF, &pSQF);
+					if (PILHA_verificaPilhaVazia(pSQF) == PILHA_CondRetPilhaVazia){
+						break;
+					}
+				}
 
-	if (retSQP != SQP_CondRetOK){
-		while (PILHA_verificaPilhaVazia(sSalva) == PILHA_CondRetOK){
-			PILHA_popPilha(sSalva, &cAuxiliar);
-			PILHA_pushPilha(auxiliar2, cAuxiliar);
-		}
-
-		while (PILHA_verificaPilhaVazia(auxiliar2) == PILHA_CondRetOK){
-			PILHA_popPilha(auxiliar2, &cAuxiliar);
-			SQP_retornaPilha(sqDe, &pSQP);
-			PILHA_pushPilha(pSQP, cAuxiliar);
-		}
-	}
-
-	if (SQP_verificaSequenciaCompleta(sqPara) == SQP_CondRetOK){
-		LIS_IrInicioLista(ListaPrincipal);
-		LIS_AvancarElementoCorrente(ListaPrincipal, 2);
-		LIS_ObterValor(ListaPrincipal, (void**)&lSQF);
-
-		for (i = 0; i < 8; i++){
-			LIS_IrInicioLista(lSQF);
-			LIS_AvancarElementoCorrente(lSQF, i);
-			LIS_ObterValor(lSQF, (void**)&sSQF);
-			SQF_retornaPilha(sSQF, &pSQF);
-			if (PILHA_verificaPilhaVazia(pSQF) == PILHA_CondRetPilhaVazia){
-				break;
+				for (i = 0; i < 13; i++){
+					SQP_popSQP(sqpPARA, &cSQF);
+					PILHA_pushPilha(pSQF, cSQF);
+				}
+				LIS_ExcluirElemento(lSQF);
 			}
-
+			return 0;//Return 0 == ok!
 		}
-		while (1){
-			CAR_criarCarta(&cCarta);
-			SQP_popSQP(sqPara, &cCarta);
-			PILHA_pushPilha(pSQF, cCarta);
-			CAR_retornaPosicao(cCarta, &cPosicao);
-			printf("cPosicao: %c\n", cPosicao);
-			if (cPosicao == 'K'){
-				break;
+		else{
+			while (PILHA_verificaPilhaVazia(pRemove) == PILHA_CondRetOK){
+				PILHA_popPilha(pRemove, &cRemove);
+				SQP_pushSQP(sqpDE, cRemove);
 			}
+			printf("Adiciona: Jogada Invalida\n");
+			return -1;//Return == Nao OK!
 		}
-
-		LIS_ExcluirElemento(lSQF);
 	}
 
-	return 0;
+	else{
+		printf("Remove: Jogada Invalida\n");
+		return -1;//Return == Nao OK!
+	}
+
 }
 
 int ESP_salvaJogo(LIS_tppLista ListaPrincipal, char nome[]){
@@ -401,7 +362,7 @@ int ESP_salvaJogo(LIS_tppLista ListaPrincipal, char nome[]){
 	for (i = 0; i < 10; i++)
 	PILHA_criarPilha(&pilhaSQP[i]);
 	for (i = 0; i < 8; i++)
-	PILHA_criarPilha(&pilhaSQF[8]);
+	PILHA_criarPilha(&pilhaSQF[i]);
 
 	//LIS_CriarLista(&listaSqPrincipal, DestruirLista);
 	//LIS_CriarLista(&listaSqFinal, DestruirLista);
@@ -603,13 +564,11 @@ int  ESP_CarregaJogoSalvo(LIS_tppLista *ListaPrincipal, char nome[]){
 
 	LIS_CriarLista(ListaPrincipal, DestruirLista);
 
-	LIS_CriarLista(&lBaralho, DestruirBaralho);
-	LIS_CriarLista(&lMorto, DestruirMorto);
-	LIS_CriarLista(&lSeqFinal, DestruirSeqFinal);
-	LIS_CriarLista(&lSeqPrincipal, DestruirSeqPrincipal);
-
-
-
+	LIS_CriarLista(&lBaralho, DestruirLista);
+	LIS_CriarLista(&lMorto, DestruirLista);
+	LIS_CriarLista(&lSeqFinal, DestruirLista);
+	LIS_CriarLista(&lSeqPrincipal, DestruirLista);
+		
 	LIS_InserirElementoApos(*ListaPrincipal, lBaralho);
 	LIS_InserirElementoApos(*ListaPrincipal, lMorto);
 	LIS_InserirElementoApos(*ListaPrincipal, lSeqFinal);
