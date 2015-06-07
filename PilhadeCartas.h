@@ -1,29 +1,28 @@
 #if ! defined( PILHADECARTAS_ )
 #define PILHADECARTAS_
 /***************************************************************************
+*  $MCI Módulo de implementação: PILHA PilhadeCartas
 *
-*  $MCD Módulo de definição: PILHA PilhadeCartas
-*
-*  Arquivo gerado:              PilhadeCartas.h
+*  Arquivo gerado:              PilhadeCartas.c
 *  Letras identificadoras:      PILHA
 *
 *
 *  Projeto: Disciplinas INF 1301
 *  Professor: Flavio
-*  Autores: ds	- Daniel Siles
-*			fh	- Fernando Homem
-*			mr	- Mateus Ribeiro
+*  Autores: ds  - Daniel Siles
+*			fh  - Fernando Homem
+*			mr - Mateus Ribeiro
+*
 *
 *  $HA Histórico de evolução:
-*     Versão  Autor         Data     Observações
+*     Versão  Autor     Data     Observações
+*		5.00 ds/fh/mr 06/06/2015 Adição da função retorna número de elementos.
+*		4.00 ds/fh/mr 27/04/2015 Uniformização da interface das funções e
+*                                de todas as condições de retorno - Parte II.
 *       3.00 ds/fh/mr 26/04/2015 Uniformização da interface das funções e
-*                                de todas as condições de retorno.
+*                                de todas as condições de retorno - Parte I.
 *       2.00 ds/fh/mr 22/04/2015 Eliminação de código duplicado, reestruturação
 *       1.00 ds/fh/mr 17/04/2015 Início do desenvolvimento
-*
-*  $ED Descrição do módulo
-*     Este módulo implementa um conjunto simples de funções para criar e
-*     explorar cartas.
 *
 ***************************************************************************/
 
@@ -170,6 +169,24 @@ PILHA_tpCondRet PILHA_verificaPilhaVazia(PILHA_tpPilha pPilha);
 ***********************************************************************/
 PILHA_tpCondRet PILHA_imprimePilha(PILHA_tpPilha pPilha);
 
+/***********************************************************************
+*
+*  $FC Função: PILHA Retorna Num Elem
+*
+*  $ED Descrição da função
+*     Retorna o número de cartas presentes na pilha.
+*
+*  $EP Parâmetros
+*	pPilha - Endereço do ponteiro com a pilha a ser verificada.
+*	num - Endereço com o ponteiro por onde será retornado o número de cartas da pilha.
+*
+*  $FV Valor retornado
+*	PILHA_CondRetOK - Número de elementos retornado sem erros.
+*	
+*  $EAE Assertivas de entradas esperadas
+*     pPilha != NULL
+*
+***********************************************************************/
 PILHA_tpCondRet PILHA_retornaNumElem(PILHA_tpPilha pPilha, int *num);
 
 #undef PILHADECARTAS_EXT

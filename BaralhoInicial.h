@@ -16,6 +16,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor     Data     Observações
+*		5.00 ds/fh/mr 06/06/2015 Adição da função pop Baralho.
 *		4.00 ds/fh/mr 27/04/2015 Uniformização da interface das funções e
 *                                de todas as condições de retorno - Parte II.
 *       3.00 ds/fh/mr 26/04/2015 Uniformização da interface das funções e
@@ -142,7 +143,7 @@ BAR_tpCondRet BAR_embaralharBaralho(BAR_tpBaralho pBaralho);
 *     Imprime o baralho recebido.
 *
 *  $EP Parâmetros
-*	pBaralho - Endereço de um ponteiro com o baralho a ser exibido.
+*	baralho - Endereço de um ponteiro com o baralho a ser exibido.
 *
 *  $FV Valor retornado
 *	BAR_CondRetOK - Imprimiu o baralho sem erros.
@@ -151,7 +152,23 @@ BAR_tpCondRet BAR_embaralharBaralho(BAR_tpBaralho pBaralho);
 ***********************************************************************/
 BAR_tpCondRet BAR_imprimeBaralho(BAR_tpBaralho baralho);
 
-
+/***********************************************************************
+*
+*  $FC Função: BAR Pop Baralho
+*
+*  $ED Descrição da função
+*     Retira uma carta do baralho.
+*
+*  $EP Parâmetros
+*	bBaralho - Endereço de um ponteiro com o baralho do qual será retirada a carta.
+*	cCarta - Endereço que receberá um ponteiro para a carta retirada do baralho.
+*
+*  $FV Valor retornado
+*	BAR_CondRetOK - Retirou uma carta do baralho sem erros.
+*	BAR_CondRetBaralhoPilhaVazia - A pilha pBCartas do baralho está vazia.
+*	BAR_CondRetBaralhoVazio - O baralho do qual será retirada a carta está vazio.
+*
+***********************************************************************/
 BAR_tpCondRet BAR_popBaralho(BAR_tpBaralho bBaralho, CAR_tpCarta *cCarta);
 
 

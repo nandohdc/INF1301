@@ -16,6 +16,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor         Data     Observações
+*		4.00 ds/fh/mr 06/06/2015 Adição da função retorna pilha.
 *       3.00 ds/fh/mr 26/04/2015 Uniformização da interface das funções e
 *                                de todas as condições de retorno.
 *       2.00 ds/fh/mr 22/04/2015 Eliminação de código duplicado, reestruturação
@@ -88,7 +89,7 @@ SQF_tpCondRet SQF_liberaSQFinal(SQF_tpSQFinal SQFinal);
 *
 *  $EP Parâmetros
 *	SQFinal - Endereço do ponteiro com a sequência final que receberá uma pilha completa.
-*	pilhaCompleta - Endereço do ponteiro contendo a pilha completa a ser adicionada a sequências finais.
+*	sqFinal - Endereço do ponteiro contendo a pilha completa a ser adicionada a sequências finais.
 *
 *  $FV Valor retornado
 *	SQF_CondRetOK - Sequência final adicionada com sucesso
@@ -97,7 +98,24 @@ SQF_tpCondRet SQF_liberaSQFinal(SQF_tpSQFinal SQFinal);
 ***********************************************************************/
 SQF_tpCondRet SQF_inicializaSQFinal(SQF_tpSQFinal SQFinal, PILHA_tpPilha sqFinal);
 
-
+/***********************************************************************
+*
+*  $FC Função: SQF Retorna Pilha
+*
+*  $ED Descrição da função
+*     Devolve a pilha de uma sequência final
+*
+*  $EP Parâmetros
+*	SQFinal - Endereço do ponteiro com a sequência final que receberá uma pilha completa.
+*	pPilha - Endereço com um ponteiro que receberá a pilha da sequência final.
+*
+*  $FV Valor retornado
+*	SQF_CondRetOK - Pilha devolvida sem erros.
+*
+*  $EAE Assertivas de entradas esperadas
+*     SQF != NULL
+*
+***********************************************************************/
 SQF_tpCondRet SQF_retornaPilha(SQF_tpSQFinal SQF, PILHA_tpPilha *pPilha);
 
 

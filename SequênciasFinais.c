@@ -1,19 +1,20 @@
 /***************************************************************************
-*  $MCI Módulo de implementação: SQF Sequencias Finais
 *
-*  Arquivo gerado:              SequenciasFinais.c
+*  $MCD Módulo de definição: SQF Sequencias Finais
+*
+*  Arquivo gerado:              SequenciasFinais.h
 *  Letras identificadoras:      SQF
 *
 *
 *  Projeto: Disciplinas INF 1301
 *  Professor: Flavio
-*  Autores: ds  - Daniel Siles
-*			fh  - Fernando Homem
-*			mr  - Mateus Ribeiro
-*
+*  Autores: ds	- Daniel Siles
+*			fh	- Fernando Homem
+*			mr	- Mateus Ribeiro
 *
 *  $HA Histórico de evolução:
-*     Versão  Autor     Data     Observações
+*     Versão  Autor         Data     Observações
+*		4.00 ds/fh/mr 06/06/2015 Adição da função retorna pilha.
 *       3.00 ds/fh/mr 26/04/2015 Uniformização da interface das funções e
 *                                de todas as condições de retorno.
 *       2.00 ds/fh/mr 22/04/2015 Eliminação de código duplicado, reestruturação
@@ -105,10 +106,16 @@ SQF_tpCondRet SQF_inicializaSQFinal(SQF_tpSQFinal SQFinal, PILHA_tpPilha sqFinal
 
 }/* Fim função: SQF inicializa SQFinal */
 
+/***********************************************************************
+*
+*  $FC Função: SQF retorna Pilha
+*
+*
+***********************************************************************/
 SQF_tpCondRet SQF_retornaPilha(SQF_tpSQFinal SQF, PILHA_tpPilha *pPilha){
 	(*pPilha) = SQF->sqFinal;
 
 	return SQF_CondRetOK;
-}
+}/* Fim função: SQF retorna Pilha */
 
 /********** Fim do módulo de implementação: SQF Sequencias Finais **********/

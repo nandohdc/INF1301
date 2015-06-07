@@ -17,6 +17,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor         Data     Observações
+*		4.00 ds/fh/mr 06/06/2015 Adição de funções necessárias.
 *       3.00 ds/fh/mr 26/04/2015 Uniformização da interface das funções e
 *                                de todas as condições de retorno.
 *       2.00 ds/fh/mr 22/04/2015 Eliminação de código duplicado, reestruturação
@@ -160,10 +161,65 @@ SQP_tpCondRet SQP_adicionaNaSequencia(PILHA_tpPilha pPilhaTira, SQP_tpSQPrincipa
 ***********************************************************************/
 SQP_tpCondRet SQP_verificaSequenciaCompleta(SQP_tpSQPrincipal SQP);
 
+/***********************************************************************
+*
+*  $FC Função: SQP Retorna Pilha
+*
+*  $ED Descrição da função
+*     Retorna a pilha de uma sequência principal por referência.
+*
+*  $EP Parâmetros
+*	sqp - Sequência principal da qual será retornada a pilha.
+*	pilha - Endereço com um ponteiro por onde será retornada a pilha.
+*
+*  $FV Valor retornado
+*	SQP_CondRetOK - Sequência verificada está completa.
+*	
+*  $EAE Assertivas de entradas esperadas
+*     sqp != NULL
+*
+***********************************************************************/
 SQP_tpCondRet SQP_retornaPilha(SQP_tpSQPrincipal sqp, PILHA_tpPilha * pilha);
 
+/***********************************************************************
+*
+*  $FC Função: SQP Push Pilha
+*
+*  $ED Descrição da função
+*     Insere uma carta na pilha de uma sequência principal.
+*
+*  $EP Parâmetros
+*	sSQP - Sequência principal na qual será inserida a carta.
+*	cCarta - Carta a ser inserida na sequência principal.
+*
+*  $FV Valor retornado
+*	SQP_CondRetOK - Carta inserida sem erros.
+*	
+*  $EAE Assertivas de entradas esperadas
+*     sSQP != NULL
+*	  cCarta != NULL
+*
+***********************************************************************/
 SQP_tpCondRet SQP_pushSQP(SQP_tpSQPrincipal sSQP, CAR_tpCarta cCarta);
 
+/***********************************************************************
+*
+*  $FC Função: SQP Pop Pilha
+*
+*  $ED Descrição da função
+*     Retira uma carta da pilha de uma sequência principal.
+*
+*  $EP Parâmetros
+*	sSQP - Sequência principal da qual será retirada a carta.
+*	Carta - Endereço com um ponteiro que receberá a carta retirada.
+*
+*  $FV Valor retornado
+*	SQP_CondRetOK - Carta retirada sem erros.
+*	
+*  $EAE Assertivas de entradas esperadas
+*     sSQP != NULL
+*
+***********************************************************************/
 SQP_tpCondRet SQP_popSQP(SQP_tpSQPrincipal sSQP, CAR_tpCarta *Carta);
 
 #undef SEQUENCIASPRINCIPAIS_EXT

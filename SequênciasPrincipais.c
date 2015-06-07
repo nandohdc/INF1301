@@ -14,6 +14,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor     Data     Observações
+*		4.00 ds/fh/mr 06/06/2015 Adição de funções necessárias.
 *       3.00 ds/fh/mr 26/04/2015 Uniformização da interface das funções e
 *                                de todas as condições de retorno.
 *       2.00 ds/fh/mr 22/04/2015 Eliminação de código duplicado, reestruturação
@@ -365,21 +366,39 @@ SQP_tpCondRet SQP_verificaSequenciaCompleta(SQP_tpSQPrincipal SQP){
 	return SQP_CondRetNaoOK;
 } /* Fim função: SQP verifica Sequencia Completa */
 
+/***********************************************************************
+*
+*  $FC Função: SQP retorna Pilha
+*
+*
+***********************************************************************/
 SQP_tpCondRet SQP_retornaPilha(SQP_tpSQPrincipal sqp, PILHA_tpPilha * pilha){
 	(*pilha) = sqp->sqPrincipal;
 
 	return SQP_CondRetOK;
-}
+} /* Fim função: SQP retorna Pilha */
 
+/***********************************************************************
+*
+*  $FC Função: SQP push SQP
+*
+*
+***********************************************************************/
 SQP_tpCondRet SQP_pushSQP(SQP_tpSQPrincipal sSQP, CAR_tpCarta cCarta){
 	PILHA_pushPilha(sSQP->sqPrincipal, cCarta);
 
 	return SQP_CondRetOK;
-}
+} /* Fim função: SQP push SQP */
 
+/***********************************************************************
+*
+*  $FC Função: SQP SQP pop SQP
+*
+*
+***********************************************************************/
 SQP_tpCondRet SQP_popSQP(SQP_tpSQPrincipal sSQP, CAR_tpCarta *Carta){
 	PILHA_popPilha(sSQP->sqPrincipal, Carta);
 
 	return SQP_CondRetOK;
-}
+} /* Fim função: SQP SQP pop SQP */
 /********** Fim do módulo de implementação: SQP Sequencias Principais **********/

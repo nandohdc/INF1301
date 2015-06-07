@@ -14,6 +14,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor     Data     Observações
+*		5.00 ds/fh/mr 06/06/2015 Adição da função pop Baralho.
 *		4.00 ds/fh/mr 27/04/2015 Uniformização da interface das funções e
 *                                de todas as condições de retorno - Parte II.
 *       3.00 ds/fh/mr 26/04/2015 Uniformização da interface das funções e
@@ -316,6 +317,12 @@ BAR_tpCondRet BAR_imprimeBaralho(BAR_tpBaralho baralho){
 	return BAR_CondRetOK;
 } /* Fim função: BAR Imprime Baralho */ 
 
+/***********************************************************************
+*
+*  $FC Função: BAR Pop Baralho
+*
+*
+***********************************************************************/
 BAR_tpCondRet BAR_popBaralho(BAR_tpBaralho bBaralho, CAR_tpCarta *cCarta){
 	if (bBaralho->pBCartas == NULL){
 		*cCarta = NULL;
@@ -331,7 +338,7 @@ BAR_tpCondRet BAR_popBaralho(BAR_tpBaralho bBaralho, CAR_tpCarta *cCarta){
 
 	return BAR_CondRetOK;
 
-}
+}  /* Fim função: BAR Pop Baralho */ 
 
 /********** Fim do módulo de implementação: BAR  Baralho Inicial  **********/
 

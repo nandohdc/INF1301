@@ -14,6 +14,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor     Data     Observações
+*		5.00 ds/fh/mr 06/06/2015 Adição da função retorna número de elementos.
 *		4.00 ds/fh/mr 27/04/2015 Uniformização da interface das funções e
 *                                de todas as condições de retorno - Parte II.
 *       3.00 ds/fh/mr 26/04/2015 Uniformização da interface das funções e
@@ -22,7 +23,6 @@
 *       1.00 ds/fh/mr 17/04/2015 Início do desenvolvimento
 *
 ***************************************************************************/
-
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -214,10 +214,16 @@ PILHA_tpCondRet PILHA_imprimePilha(PILHA_tpPilha pPilha){
 	return PILHA_CondRetOK;
 }/* Fim função: PILHA imprime Pilha */
 
+/***********************************************************************
+*
+*  $FC Função: PILHA retorna Num Elem
+*
+*
+***********************************************************************/
 PILHA_tpCondRet PILHA_retornaNumElem(PILHA_tpPilha pPilha, int *num){
 	LIS_retornaNumElementos(pPilha->topo, num);
 	return PILHA_CondRetOK;
-}
+}/* Fim função: PILHA retorna Num Elem */
 
 
 void DestruirCarta(void * pValor)

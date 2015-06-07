@@ -14,6 +14,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor     Data     Observações
+*		5.00 ds/fh/mr 06/06/2015 Adição da função retorna Morto
 *		4.00 ds/fh/mr 27/04/2015 Uniformização da interface das funções e
 *                                de todas as condições de retorno - Parte II.
 *       3.00 ds/fh/mr 26/04/2015 Uniformização da interface das funções e
@@ -108,11 +109,20 @@ MOR_tpCondRet MOR_popMorto(MOR_tpMorto mMorto, CAR_tpCarta * cartaPop){
 		return MOR_CondRetNaoOK;
 }/* Fim função: MOR pop Morto */
 
+/***********************************************************************
+*
+*  $FC Função: MOR retorna Morto
+*
+*
+***********************************************************************/
 MOR_tpCondRet MOR_retornaMorto(MOR_tpMorto mMorto, PILHA_tpPilha * pilha){
+	if (mMorto->morto == NULL){
+		return MOR_CondRetMortoVazio;
+	}
 
 	(*pilha) = mMorto->morto;
 	
 	return MOR_CondRetOK;
-}
+} /* Fim função: MOR retorna Morto */
 
 /********** Fim do módulo de implementação: MOR Morto **********/
