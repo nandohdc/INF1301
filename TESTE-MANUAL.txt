@@ -1,0 +1,43 @@
+*********************************
+*Manual de Teste 		*
+*				*
+*Desenvolvido por:		*
+*DS-Daniel Siles		*
+*FH-Fernando Homem		*
+*MR- Mateus Ribeiro		*
+*********************************
+
+
+1. Execute o arquivo TRAB3-2.exe 
+2. Digite '1' e tecle enter em seguida-> Iniciar novo Jogo
+3. Digite '4' e tecle enter em seguida-> Escolher 4 naipes
+4. Digite 'M' e tecle enter em seguida-> Liberar um Morto
+5. Digite 'S' e tecle enter em seguida-> Salvar o jogo
+5.1. Escreva "EXEMPLO.txt"(sem aspas) e aperte enter em seguida.
+6. Execute a aplicação novamente. 
+6.1 Digite '2' seguido de enter-> Carregar jogo salvo
+6.1.2 Escreva "EXEMPLO.txt"(sem aspas) e aperte enter em seguida.
+6.2. Digite 'F' e tecle enter em seguida-> Fechar o jogo
+7. Execute novamente a aplicação.
+7.1 Digite '3' para sair da aplicação.
+8. Execute novamente a aplicação. 
+8.1 Desta vez, digite '2' seguido de enter ->Carregar jogo
+8.2. Escreva "TESTE.txt" (sem aspas) e aperte enter em seguida.
+9. Tente mover a sequencia 2 -(P2OA) para 3 -(E3)->(Mover sequencia heterogenea, sem sucesso)
+9.1. Para isso, aperte 'J' e enter em seguida.
+9.2. Em seguida, digite 2, enter, 3, enter, P, enter, 2, enter. 
+10. Tente mover 3 -(E3) para a sequencia 4-(EKEQEJET...E5) ->(mover carta não sequencial, sem sucesso)
+10.1. Digite 'J' seguido de enter.
+10.2. Em seguida, digite 3, enter, 4, enter, E, enter, 3, enter. 
+11. Mover 1-(C2) para a sequencia 0 - (CKCQCJ....C3)-> (mover carta corretamente e liberar carta oculta)
+11.1. Aperte 'J' seguido de enter. 
+11.2. Em seguida, digite 1, enter, 0, enter, C, enter, 2, enter. 
+12. Mover 2-(OA) para sequencia 5-(OKOQOJ....O2)-> (completar sequencia) 
+12.1. Aperte 'J' seguido de enter.
+12.2. Em seguida, digite 2, enter, 5, enter, O, enter, A, enter. 
+13. Mover de 7-(P7) para 8-(PKPQPJPT..P8) ->(mover para sequencia)
+13.1. Aperte 'J' seguido de enter. 
+13.2. Em seguida, digite 7, enter, 8, enter, P, enter, 7, enter. 
+14. Mover de 0-(EA) para 7-(vazia) ->(mover para sequencia vazia)
+14.1. Em seguida, digite 0, enter, 7, enter, E, enter, A, enter. 
+

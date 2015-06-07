@@ -1,0 +1,71 @@
+﻿*********************************
+*Manual do Jogo Paciência Spider*
+*				*
+*Desenvolvido por:		*
+*DS-Daniel Siles		*
+*FH-Fernando Homem		*
+*MR- Mateus Ribeiro		*
+*********************************
+
+1. Como executar o jogo?
+R: Para executar o jogo, clique duas vezes com o botão no arquivo TRAB3-1.exe.
+
+2. Como iniciar um novo jogo?
+R: Após a execução do jogo, digite '1' seguido de 'enter' para iniciar um novo jogo.
+
+2.1 Como escolher a dificuldade?
+R: Após o passo 2, o programa perguntará qual é o nível de dificuldade desejado. digite:
+1-Fácil
+2-Médio
+3-Difícil
+4-Muito Difícil, seguido de 'enter'.
+
+3. Como carregar um jogo salvo?
+R: Após a execução do jogo, digite '2' seguido de 'enter' para carregar um jogo.
+Em seguida, escreva "EXEMPLO.txt"(sem aspas) e aperte enter.
+
+	
+4. Como salvar um jogo?
+R: Após um jogo iniciado,serão expostas algumas opções:
+S - Para Salvar o Jogo
+F - Para Fechar o Jogo
+J - Para Realizar uma Jogada
+M - Para Utilizar o Morto, digite 'S' e aperte de 'enter'. 
+Em seguida, escreva "EXEMPLO.txt"(sem aspas) e aperte enter.
+OBS: Note que o caminho do arquivo é referente a pasta em que o jogo está sendo executado.
+OBS2: Ao salvar um jogo novo, o jogo antigo será sobrescrito. 
+	
+5. Como realizar uma jogada?
+R:Após um jogo iniciado,serão expostas algumas opções:
+S - Para Salvar o Jogo
+F - Para Fechar o Jogo
+J - Para Realizar uma Jogada
+M - Para Utilizar o Morto, digite 'J' seguido de 'enter'.
+5.1 Movimento entre Sequências.
+R: Serão feitas 4 perguntas:
+"Digite numero da sequencia que deseja remover a carta:",
+digite o numero da sequência de origem.
+
+"Digite numero da sequencia que deseja adicionar a carta:",
+digite o numero da sequência de destino.
+
+"Digite o naipe da carta que deseja remover:",
+digite o naipe da carta da sequência de origem.
+
+"Digite a posicao da carta que deseja remover:",
+digite a posicão da carta da sequência de origem.
+
+5.2 Como utilizar o Morto?
+R:Após um jogo iniciado,serão expostas algumas opções:
+S - Para Salvar o Jogo
+F - Para Fechar o Jogo
+J - Para Realizar uma Jogada
+M - Para Utilizar o Morto, digite 'M' seguido de 'enter'.
+
+6. Como sair do jogo SEM SALVAR?
+R:Após um jogo iniciado,serão expostas algumas opções:
+S - Para Salvar o Jogo
+F - Para Fechar o Jogo
+J - Para Realizar uma Jogada
+M - Para Utilizar o Morto, digite 'F' seguido de 'enter'.
+		
