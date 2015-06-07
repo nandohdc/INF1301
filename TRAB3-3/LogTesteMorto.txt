@@ -1,0 +1,35 @@
+
+
+LES - Laboratório de Engenharia de Software DI/PUC-Rio
+      Arcabouço de teste de módulos C  (c) 2006
+
+---------------------------------------------
+      Construto sob teste: TRAB3-3
+
+      Arquivo de teste:    TesteMorto.script
+
+
+!!!    0  Linha:     1  // Script: TesteMorto.script 
+!!!    0  Linha:     2  // Autor: Daniel Siles 
+!!!    0  Linha:     3  // Fernando Homem 
+!!!    0  Linha:     4  // Mateus Ribeiro 
+!!!    0  Linha:     5  // Objetivo: Testar o módulo Morto. 
+!!!    0  Linha:     6  // 
+    7  == Criar monte com 3 cartas previamente escolhidas
+   10  == Retorna Pilha do Morto com 3 elementos
+   13  ==Pop uma carta
+   16  ==Pop uma carta
+   19  ==Pop uma carta
+   22  ==Pop uma carta de um morto vazioEditar: Não existe Face valida!
+
+   25  ==Libera morto
+
+!!! Número de linhas lidas:          26
+!!! Número de casos de teste:         7
+!!! Número comandos corretos:         7
+!!! Número de falhas encontradas:     0
+
+!!! Não foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0

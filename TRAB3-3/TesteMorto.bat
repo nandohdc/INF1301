@@ -1,0 +1,1 @@
+TRAB3-3 /sTesteMorto.script > LogTesteMorto.txt

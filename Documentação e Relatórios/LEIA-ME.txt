@@ -1,0 +1,102 @@
+*********************************************************
+* Programa: Paciência Spider				*
+*							*
+* Data: 04/05/2015					*
+* Autores: Daniel Siles (danielsiles9@hotmail.com)	*
+*	   Fernando Homem (nandohdc@gmail.com)		*
+*	   Mateus Ribeiro (matcastro2004@yahoo.com.br)	*
+*							*
+*********************************************************
+Descrição do programa:
+
+O Trabalho 3 da disciplina INF1301 (2015.1) trata de concluir a programação de
+um jogo chamado Paciência Spider.
+
+O jogo irá funcionar em Windows e será jogado através do CMD(Prompt de Comando).
+
+O jogo, Paciência Spider, é constituído de dois baralhos sem curingas, utilizando no
+total 104 cartas. E também apresenta quatro níveis de dificuldades:
+1 Naipe - Fácil,
+2 Naipes - Médio,
+3 Naipes - Difícil,
+4 Naipes - Muito Difícil.
+ 
+==> O Trabalho 3 é composto de:
+
+1)Diagrama de Arquitetura/ Modelo Estrutural /
+Exemplo de Modelo Estrutural : 
+-Um arquivo em formato pdf contendo os três.
+
+2)Arquivos Fontes:
+
+Módulos de Implementação:
+-Carta.c
+-LISTA.c
+-PilhadeCartas.c
+-TESTEPILHA.c
+-BaralhoInicial.c
+-TESTEBARALHO.c
+-Morto.c
+-TESTEMORTO.c
+-SequênciasPrincipais.c
+-TESTESQP.c
+-SequênciasFinais.c
+-TESTESQF.c
+
+Módulos de Definição:
+-Carta.h
+-LISTA.h
+-PilhadeCartas.h
+-BaralhoInicial.h
+-Morto.h
+-SequênciasPrincipais.h
+-SequênciasFinais.h
+-GENERICO.H
+-LERPARM.H
+-TST_ESPC.H
+
+Arcabouço de Teste:
+-ArcaboucoTeste.lib
+
+Arquivos Executáveis:
+-TRAB3-1.exe
+-TRAB3-2.exe
+-TRAB3-3.exe
+-TRAB3-4.exe
+-TRAB3-5.exe
+-TRAB3-6.exe
+
+Scripts de Testes:
+-TestePilha.script
+-TesteBaralho.script
+-TesteMorto.script
+-TesteSQP.script
+-TesteSQF.script
+
+Logs de saída:
+-LogTestePilha.txt
+-LogTesteBaralho.txt
+-LogTesteMorto.txt
+-LogTesteSQP.txt
+-LogTesteSQF.txt
+
+Relatórios:
+-RELATORIO-DANIELSILES.txt
+-RELATORIO-FERNANDOHOMEM.txt
+-RELATORIO-MATEUSRIBEIRO.txt 
+
+Teste Manual de Aplicação Completa:
+TESTE-MANUAL.txt
+
+Manual de Usuário:
+MANUAL-DE-USUARIO.txt
+
+Executando no Windows
+---------------------------------------------------------
+
+1ºPasso -> Clique duas vezes com botão esquerdo na pasta TRAB3-6 para abri-la.
+
+2ºPasso -> Clique duas vezes com o botão esquerdo no arquivo TRAB3-6.exe
+para o programa funcionar.
+
+Fim.

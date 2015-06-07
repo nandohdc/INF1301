@@ -1,0 +1,22 @@
+// Script: TesteSQF.script
+// Autor: Daniel Siles
+// Fernando Homem
+// Mateus Ribeiro
+// Objetivo: Testar o módulo Sequências Finais.
+//
+==Preencher sequencia inexistente
+=editarsqf 2
+
+==Criar sequencia
+=criarsqf 0
+
+==Preencher sequencia com 3 cartas previamente escolhidas
+=editarsqf 0
+
+==Retorna pilha do SQF
+=retornapilha 0
+
+==Libera sequencia
+=liberarsqf 0
+
+// fim

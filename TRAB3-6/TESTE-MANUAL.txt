@@ -7,8 +7,19 @@
 *MR- Mateus Ribeiro		*
 *********************************
 
+************
+*Introdução*
+****************************************
+*As respresentações dos naipes segue   *
+*o seguinte padrão:                    *
+*E-Espadas                             *
+*C-Copas                               *
+*P-Paus                                *
+*O-Ouros			       *
+****************************************
 
-1. Execute o arquivo TRAB3-2.exe 
+
+1. Execute o arquivo TRAB3-6.exe 
 2. Digite '1' e tecle enter em seguida-> Iniciar novo Jogo
 3. Digite '4' e tecle enter em seguida-> Escolher 4 naipes
 4. Digite 'M' e tecle enter em seguida-> Liberar um Morto
@@ -22,7 +33,7 @@
 7.1 Digite '3' para sair da aplicação.
 8. Execute novamente a aplicação. 
 8.1 Desta vez, digite '2' seguido de enter ->Carregar jogo
-8.2. Escreva "TESTE.txt" (sem aspas) e aperte enter em seguida.
+8.2. Digite "TESTE.txt" (sem aspas) e aperte enter em seguida.
 9. Tente mover a sequencia 2 -(P2OA) para 3 -(E3)->(Mover sequencia heterogenea, sem sucesso)
 9.1. Para isso, aperte 'J' e enter em seguida.
 9.2. Em seguida, digite 2, enter, 3, enter, P, enter, 2, enter. 

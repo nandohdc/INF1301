@@ -1,0 +1,35 @@
+
+
+LES - Laboratório de Engenharia de Software DI/PUC-Rio
+      Arcabouço de teste de módulos C  (c) 2006
+
+---------------------------------------------
+      Construto sob teste: TRAB3-4
+
+      Arquivo de teste:    TesteSQF.script
+
+
+!!!    0  Linha:     1  // Script: TesteSQF.script 
+!!!    0  Linha:     2  // Autor: Daniel Siles 
+!!!    0  Linha:     3  // Fernando Homem 
+!!!    0  Linha:     4  // Mateus Ribeiro 
+!!!    0  Linha:     5  // Objetivo: Testar o módulo Sequências Finais. 
+!!!    0  Linha:     6  // 
+    7  ==Preencher sequencia inexistente
+   10  ==Criar sequencia
+   13  ==Preencher sequencia com 3 cartas previamente escolhidas
+   16  ==Retorna pilha do SQF
+   19  ==Libera sequencia
+   23  ==Retorna pilha do SQF
+>>>    1  Linha:    24  Erro ao retornar a pilha da SQF Deveria ser: 2  É: 0
+!!!    1  Linha:    26  // fim 
+
+!!! Número de linhas lidas:          26
+!!! Número de casos de teste:         6
+!!! Número comandos corretos:         5
+!!! Número de falhas encontradas:     1
+
+!!! Foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0

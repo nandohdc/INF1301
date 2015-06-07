@@ -1,0 +1,1 @@
+TRAB3-1 /sTestePilha.script > LogTestePilha.txt

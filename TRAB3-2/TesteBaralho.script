@@ -1,0 +1,42 @@
+// Script: TesteBaralho.script
+// Autor: Daniel Siles
+// 	  Fernando Homem
+// 	  Mateus Ribeiro
+// Objetivo: Testar o módulo Baralho.
+//
+
+==Inicializar um baralho não existente
+=inicializarbaralho 1 1
+
+==Embaralhar baralho não existente
+=embaralharbaralho 1
+
+==Criar baralho
+=criarbaralho 0
+
+==Pop uma carta Baralho
+=popbaralho 4
+
+==Inicializar um baralho de 4 naipes
+=inicializarbaralho 4 0 
+
+==Embaralhar baralho inicial
+=embaralharbaralho 0
+
+==Pop uma carta Baralho
+=popbaralho 0
+
+==Imprimi baralho completo
+=imprimirbaralho 0
+
+==Libera baralho
+=liberarbaralho 0
+
+==Criar baralho
+=criarbaralho 0
+
+==Inicializar um baralho com numero de naipes inválido
+=inicializarbaralho 5 2
+
+==Libera baralho
+=liberarbaralho 0

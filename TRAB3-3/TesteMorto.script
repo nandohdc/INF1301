@@ -1,0 +1,26 @@
+// Script: TesteMorto.script
+// Autor: Daniel Siles
+// Fernando Homem
+// Mateus Ribeiro
+// Objetivo: Testar o módulo Morto.
+//
+== Criar monte com 3 cartas previamente escolhidas
+=criarmorto 0
+
+== Retorna Pilha do Morto com 3 elementos
+=retornamorto 0
+
+==Pop uma carta
+=popmorto 0
+
+==Pop uma carta
+=popmorto 0
+
+==Pop uma carta
+=popmorto 0
+
+==Pop uma carta de um morto vazio
+=popmorto 1
+
+==Libera morto
+=liberarmorto 0

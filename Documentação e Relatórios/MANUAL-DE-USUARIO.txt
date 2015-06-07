@@ -6,9 +6,20 @@
 *FH-Fernando Homem		*
 *MR- Mateus Ribeiro		*
 *********************************
+************
+*Introdução*
+****************************************
+*As respresentações dos naipes segue   *
+*o seguinte padrão:                    *
+*E-Espadas                             *
+*C-Copas                               *
+*P-Paus                                *
+*O-Ouros			       *
+****************************************
+
 
 1. Como executar o jogo?
-R: Para executar o jogo, clique duas vezes com o botão no arquivo TRAB3-1.exe.
+R: Para executar o jogo, clique duas vezes com o botão no arquivo TRAB3-6.exe.
 
 2. Como iniciar um novo jogo?
 R: Após a execução do jogo, digite '1' seguido de 'enter' para iniciar um novo jogo.
@@ -50,7 +61,8 @@ digite o numero da sequência de origem.
 digite o numero da sequência de destino.
 
 "Digite o naipe da carta que deseja remover:",
-digite o naipe da carta da sequência de origem.
+digite o naipe da carta da sequência de origem de acordo com o
+padrão da introdução.
 
 "Digite a posicao da carta que deseja remover:",
 digite a posicão da carta da sequência de origem.
