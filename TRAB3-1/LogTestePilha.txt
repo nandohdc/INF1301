@@ -25,15 +25,15 @@ LES - Laboratório de Engenharia de Software DI/PUC-Rio
    29  ==Verifica pilha Vazia (agora cheia)
    32  == Pop na pilha 0
    35  == Push Ás de espadas visivel na pilha 0Editar: Não existe Face valida!
-Carta Push:   ä 
+Carta Push:   ä 
    38  == Pop na pilha 0Editar: Não existe Face valida!
 
    41  == Push Ás de espadas visivel na pilha 0Editar: Nao existe Naipe valido!
-Carta Push:   ä 
+Carta Push:   ä 
    44  == Pop na pilha 0Editar: Não existe Face valida!
 
    47  == Push Ás de espadas visivel na pilha 0Editar: Nao existe posicao valida!
-Carta Push:   ä 
+Carta Push:   ä 
    50  == Pop na pilha 0Editar: Não existe Face valida!
 
    53  == Liberar pilha numero 0

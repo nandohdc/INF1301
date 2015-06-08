@@ -20,16 +20,14 @@ LES - Laboratório de Engenharia de Software DI/PUC-Rio
    13  ==Preencher sequencia com 3 cartas previamente escolhidas
    16  ==Retorna pilha do SQF
    19  ==Libera sequencia
-   23  ==Retorna pilha do SQF
->>>    1  Linha:    24  Erro ao retornar a pilha da SQF Deveria ser: 2  É: 0
-!!!    1  Linha:    26  // fim 
+!!!    0  Linha:    22  // fim 
 
-!!! Número de linhas lidas:          26
-!!! Número de casos de teste:         6
+!!! Número de linhas lidas:          22
+!!! Número de casos de teste:         5
 !!! Número comandos corretos:         5
-!!! Número de falhas encontradas:     1
+!!! Número de falhas encontradas:     0
 
-!!! Foram encontrados problemas
+!!! Não foram encontrados problemas
 
 
 !!! Numero de espacos ainda alocados: 0

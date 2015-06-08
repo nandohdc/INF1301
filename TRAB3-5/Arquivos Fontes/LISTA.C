@@ -1,8 +1,8 @@
 /***************************************************************************
-*  $MCI Módulo de implementação: CAR Carta
+*  $MCI Módulo de implementação: LIS Lista
 *
-*  Arquivo gerado:              Carta.c
-*  Letras identificadoras:      CAR
+*  Arquivo gerado:              Lista.c
+*  Letras identificadoras:      LIS
 *
 *
 *  Projeto: Disciplinas INF 1301

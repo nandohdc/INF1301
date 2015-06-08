@@ -61,8 +61,11 @@ typedef enum{
 	SQP_CondRetNaipeDiferente = 5,
 	/*Retornou naipe valido porem diferente do que deveria ser inserido*/
 
-	SQP_CondRetSequenciaVazia = 6
+	SQP_CondRetSequenciaVazia = 6,
 	/*Sequencia principal vazia*/
+
+	SQP_CondRetNaoExiste = 7
+	/*Sequencia Principal nao existe*/
 
 } SQP_tpCondRet;
 
@@ -130,7 +133,7 @@ SQP_tpCondRet SQP_removeDaSequencia(SQP_tpSQPrincipal sqTira, CAR_tpCarta cCarta
 *
 *  $EP Parâmetros
 *	sqRecebe - Endereço com a sequência na qual será adicionada a pilha de cartas.
-*	pPilhaTira - Endereço com a pilha de cartas a ser adicionada na sequência.
+*	pPilhaRecebida - Endereço com a pilha de cartas a ser adicionada na sequência.
 *
 *  $FV Valor retornado
 *	SQP_CondRetOK - Pilha removida da sequência sem erros
@@ -139,7 +142,7 @@ SQP_tpCondRet SQP_removeDaSequencia(SQP_tpSQPrincipal sqTira, CAR_tpCarta cCarta
 *	SQP_CondRetNaipeDiferente - A pilha de cartas não possui o mesmo naipe da carta final da sequência.
 *
 ***********************************************************************/
-SQP_tpCondRet SQP_adicionaNaSequencia(PILHA_tpPilha pPilhaTira, SQP_tpSQPrincipal sqRecebe);
+SQP_tpCondRet SQP_adicionaNaSequencia(PILHA_tpPilha pPilhaRecebida, SQP_tpSQPrincipal sqRecebe);
 
 /***********************************************************************
 *

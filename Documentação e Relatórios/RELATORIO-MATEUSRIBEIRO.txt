@@ -16,4 +16,5 @@ Data		Horas Trabalhadas		Tipo Tarefa						Descrição da Tarefa Realizada
 05/06			2			Realizar os testes					Realização dos testes e analise dos resultados
 06/06			3			Codificar Módulo					Continuação da codificação Estrutura Principal
 06/06			2			Diagnosticar e corrigir os problemas encontrados	Correção no módulo de implementação	
-06/06			3			Revisar Projeto						Correação de toda documentação e criação do módulo
+07/06			5			Diagnosticar e corrigir os problemas encontrados	Correção no módulo de implementação
+07/06			3			Revisar Projeto						Correação de toda documentação e criação do módulo

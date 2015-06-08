@@ -26,29 +26,98 @@
 5. Digite 'S' e tecle enter em seguida-> Salvar o jogo
 5.1. Escreva "EXEMPLO.txt"(sem aspas) e aperte enter em seguida.
 6. Execute a aplicação novamente. 
-6.1 Digite '2' seguido de enter-> Carregar jogo salvo
-6.1.2 Escreva "EXEMPLO.txt"(sem aspas) e aperte enter em seguida.
+6.1. Digite '2' seguido de enter-> Carregar jogo salvo
+6.1.2. Escreva "EXEMPLO.txt"(sem aspas) e aperte enter em seguida.
 6.2. Digite 'F' e tecle enter em seguida-> Fechar o jogo
 7. Execute novamente a aplicação.
-7.1 Digite '3' para sair da aplicação.
+7.1. Digite '3' para sair da aplicação.
 8. Execute novamente a aplicação. 
-8.1 Desta vez, digite '2' seguido de enter ->Carregar jogo
-8.2. Digite "TESTE.txt" (sem aspas) e aperte enter em seguida.
-9. Tente mover a sequencia 2 -(P2OA) para 3 -(E3)->(Mover sequencia heterogenea, sem sucesso)
-9.1. Para isso, aperte 'J' e enter em seguida.
-9.2. Em seguida, digite 2, enter, 3, enter, P, enter, 2, enter. 
-10. Tente mover 3 -(E3) para a sequencia 4-(EKEQEJET...E5) ->(mover carta não sequencial, sem sucesso)
-10.1. Digite 'J' seguido de enter.
-10.2. Em seguida, digite 3, enter, 4, enter, E, enter, 3, enter. 
-11. Mover 1-(C2) para a sequencia 0 - (CKCQCJ....C3)-> (mover carta corretamente e liberar carta oculta)
-11.1. Aperte 'J' seguido de enter. 
-11.2. Em seguida, digite 1, enter, 0, enter, C, enter, 2, enter. 
-12. Mover 2-(OA) para sequencia 5-(OKOQOJ....O2)-> (completar sequencia) 
-12.1. Aperte 'J' seguido de enter.
-12.2. Em seguida, digite 2, enter, 5, enter, O, enter, A, enter. 
-13. Mover de 7-(P7) para 8-(PKPQPJPT..P8) ->(mover para sequencia)
-13.1. Aperte 'J' seguido de enter. 
-13.2. Em seguida, digite 7, enter, 8, enter, P, enter, 7, enter. 
-14. Mover de 0-(EA) para 7-(vazia) ->(mover para sequencia vazia)
-14.1. Em seguida, digite 0, enter, 7, enter, E, enter, A, enter. 
-
+8.1. Desta vez, digite '2' seguido de enter ->Carregar jogo
+8.2. Digite "TESTEFINAL.txt" (sem aspas) e aperte enter em seguida.
+9.Tente usar o morto com sequencia principais vazias -> Morto Nao devera funcionar
+9.1. Digite 'M' seguido de enter.
+10. Tente mover a sequencia 5 -(C8E6C5) para 3 -(E7)->(Mover sequencia heterogenea, sem sucesso)
+10.1. Para isso, aperte 'J' e enter em seguida.
+10.2. Em seguida, digite 5, enter, 3, enter, E, enter, 6, enter. 
+11. Tente mover 5 -(C8E6C5) para a sequencia 0-(C7) ->(mover carta não sequencial, sem sucesso)
+11.1. Digite 'J' seguido de enter.
+11.2. Em seguida, digite 5, enter, 0, enter, C, enter, 5, enter. 
+12. Mover 3-(E7) para a sequencia 2-(EKEQEJ..E8)-> (mover carta corretamente e liberar carta oculta)
+12.1. Aperte 'J' seguido de enter. 
+12.2. Em seguida, digite 3, enter, 2, enter, E, enter, 7, enter. 
+13. Mover 5-(C8E6C5) para sequencia 8-(NULL)-> (Mover Para Sequencia Vazia) 
+13.1. Aperte 'J' seguido de enter.
+13.2. Em seguida, digite 5, enter, 8, enter, C, enter, 5, enter. 
+14. Mover de 5-(C8E6) para 2-(EKEQEJET..E7) ->(mover para sequencia)
+14.1. Aperte 'J' seguido de enter. 
+14.2. Em seguida, digite 5, enter, 2, enter, E, enter, 6, enter.
+15. Mover de 3-(E5) para 8-(EKEQEJET..E6) ->(mover para sequencia)
+15.1. Aperte 'J' seguido de enter. 
+15.2. Em seguida, digite 3, enter, 2, enter, E, enter, 5, enter.  
+16. Mover de 6-(E4...EA) para 2-(EKEQEJET..E5) ->(Completar Sequencia)
+16.1. Aperte 'J' seguido de enter. 
+16.2. Em seguida, digite 6, enter, 2, enter, E, enter, 4, enter. 
+17. Mover de 1-(CQCJCT) para 2-(NULL) -> (Mover Para Sequencia Vazia)
+17.1. Aperte 'J' seguido de enter. 
+17.2. Em seguida, digite 1, enter, 2, enter, C, enter, J, enter. 
+18. Mover de 2-(CJCT) para 3-(NULL) -> (Mover Para Sequencia Vazia)
+18.1. Aperte 'J' seguido de enter. 
+18.2. Em seguida, digite 2, enter, 3, enter, C, enter, T, enter. 
+19. Mover de 9-(C6C5C4C3C2CA) para 6-(NULL) -> (Mover Para Sequencia Vazia)
+19.1. Aperte 'J' seguido de enter. 
+19.2. Em seguida, digite 9, enter, 6, enter, C, enter, 4, enter. 
+20. Usar morto de forma correta. -> Morto deverá funcionar.
+20.1. Digite 'M' seguido de enter.
+21. Mover de 1-(CQCQ) para 0-(C7CK) -> (mover para sequencia)
+21.1. Aperte 'J' seguido de enter. 
+21.2. Em seguida, digite 1, enter, 0, enter, C, enter, Q, enter. 
+22. Mover de 2-(CJCJ) para 0-(C7CKCQ) -> (mover para sequencia)
+22.1. Aperte 'J' seguido de enter. 
+22.2. Em seguida, digite 2, enter, 0, enter, C, enter, J, enter. 
+23. Mover de 3-(CTCT) para 0-(C7CKCQCJ) -> (mover para sequencia)
+23.1. Aperte 'J' seguido de enter. 
+23.2. Em seguida, digite 3, enter, 0, enter, C, enter, T, enter. 
+24. Mover de 4-(C3C2CAC9) para 0-(C7CKCQCJCT) -> (mover para sequencia)
+24.1. Aperte 'J' seguido de enter. 
+24.2. Em seguida, digite 4, enter, 0, enter, C, enter, 9, enter. 
+25. Mover de 5-(C8C8) para 0-(C7CKCQCJCTC9) -> (mover para sequencia)
+25.1. Aperte 'J' seguido de enter. 
+25.2. Em seguida, digite 5, enter, 0, enter, C, enter, 8, enter. 
+26. Mover de 6-(C4C3C2CAC7) para 0-(C7CKCQCJCTC9C8) -> (mover para sequencia)
+26.1. Aperte 'J' seguido de enter. 
+26.2. Em seguida, digite 6, enter, 0, enter, C, enter, 7, enter. 
+27. Mover de 9-(C6C5C4) para 0-(C7CKCQCJCTC9C8C7) -> (mover para sequencia)
+27.1. Aperte 'J' seguido de enter. 
+27.2. Em seguida, digite 9, enter, 0, enter, C, enter, 6, enter. 
+28. Mover de 5-(C3C2CA) para 0-(C7CKCQCJCTC9C8C7C6C5C4) -> (Completar Sequencia)
+28.1. Aperte 'J' seguido de enter. 
+28.2. Em seguida, digite 4, enter, 0, enter, C, enter, 3, enter. 
+29. Mover de 7-(CKC6) para 0-(C7) -> (mover para sequencia)
+29.1. Aperte 'J' seguido de enter. 
+29.2. Em seguida, digite 7, enter, 0, enter, C, enter, 6, enter. 
+30. Mover de 1-(CQ) para 7-(CK) -> (mover para sequencia)
+30.1. Aperte 'J' seguido de enter. 
+30.2. Em seguida, digite 1, enter, 7, enter, C, enter, Q, enter. 
+31. Mover de 2-(CJ) para 7-(CKCQ) -> (mover para sequencia)
+31.1. Aperte 'J' seguido de enter. 
+31.2. Em seguida, digite 2, enter, 7, enter, C, enter, J, enter. 
+32. Mover de 3-(CT) para 7-(CKCQCJ) -> (mover para sequencia)
+32.1. Aperte 'J' seguido de enter. 
+32.2. Em seguida, digite 3, enter, 7, enter, C, enter, T, enter. 
+33. Mover de 8-(C5C9) para 7-(CKCQCJCT) -> (mover para sequencia)
+33.1. Aperte 'J' seguido de enter. 
+33.2. Em seguida, digite 8, enter, 7, enter, C, enter, 9, enter. 
+34. Mover de 5-(C8) para 7-(CKCQCJCTC9) -> (mover para sequencia)
+34.1. Aperte 'J' seguido de enter. 
+34.2. Em seguida, digite 5, enter, 7, enter, C, enter, 8, enter. 
+35. Mover de 0-(C7C6) para 7-(CKCQCJCTC9C8) -> (mover para sequencia)
+35.1. Aperte 'J' seguido de enter. 
+35.2. Em seguida, digite 0, enter, 7, enter, C, enter, 7, enter. 
+36. Mover de 8-(C5) para 7-(CKCQCJCTC9C8C7C6) -> (mover para sequencia)
+36.1. Aperte 'J' seguido de enter. 
+36.2. Em seguida, digite 8, enter, 7, enter, C, enter, 5, enter. 
+37. Mover de 8-(C4C3C2CA) para 7-(CKCQCJCTC9C8C7C6C5) -> (Terminar Jogo)
+37.1. Aperte 'J' seguido de enter. 
+37.2. Em seguida, digite 6, enter, 7, enter, C, enter, 4, enter. 
+38. O jogo foi terminado. -> (Fechar janela do jogo)
+38.1. Aperte 'F' seguido de enter.

@@ -1,0 +1,38 @@
+
+
+LES - Laboratório de Engenharia de Software DI/PUC-Rio
+      Arcabouço de teste de módulos C  (c) 2006
+
+---------------------------------------------
+      Construto sob teste: TRAB3-5
+
+      Arquivo de teste:    TesteSQP.script
+
+
+!!!    0  Linha:     1  // Script:    TesteSQP.script 
+!!!    0  Linha:     2  // Autor:  Daniel Siles 
+!!!    0  Linha:     3  // Fernando Homem 
+!!!    0  Linha:     4  // Mateus Ribeiro 
+!!!    0  Linha:     5  // Propósito: Testar o módulo SQP. 
+!!!    0  Linha:     6  // 
+    8  ==Remove da sequencia nao existente
+   11  ==Cria Sequencia
+   14  ==Adicionando pilha criada previamente na sequencia
+   17  ==Verifica SQP completa
+   20  ==Removendo da sequencia já inicializada uma pilha ate a carta selecionada
+   23  ==Adicionando pilha criada previamente na sequencia
+   26  ==Retorna pilha da SQP
+   29  ==Pop da SQP
+   32  ==Push para SQP
+   35  ==Libera SQP
+!!!    0  Linha:    39  // fim 
+
+!!! Número de linhas lidas:          39
+!!! Número de casos de teste:        10
+!!! Número comandos corretos:        10
+!!! Número de falhas encontradas:     0
+
+!!! Não foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0

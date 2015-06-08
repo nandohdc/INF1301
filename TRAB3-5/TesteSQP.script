@@ -1,27 +1,39 @@
-// Script:    TesteMonte.script
-// Autor:     EU
-// Propósito: Testar o módulo Monte.
+// Script:    TesteSQP.script
+// Autor:  Daniel Siles
+// Fernando Homem
+// Mateus Ribeiro
+// Propósito: Testar o módulo SQP.
 //
 
-==Adiciona na sequencia nao existente
-=removersqp 6
+==Remove da sequencia nao existente
+=removersqp 7
 
 ==Cria Sequencia
 =criarsqp 0
 
 ==Adicionando pilha criada previamente na sequencia
-=adicionarsqp 0 0 
+=adicionarsqp 0
 
-==Adicionando pilha criada previamente na sequencia
-=adicionarsqp 1 4
-
-==Adicionando pilha criada previamente na sequencia
-=adicionarsqp 2 5 
-
-==Adicionando pilha criada previamente na sequencia
-=adicionarsqp 3 3 
+==Verifica SQP completa
+=verificarsqp 0 
 
 ==Removendo da sequencia já inicializada uma pilha ate a carta selecionada
-=removersqp 0  
+=removersqp 0 
+
+==Adicionando pilha criada previamente na sequencia
+=adicionarsqp 3 
+
+==Retorna pilha da SQP 
+=retornapilha 0
+
+==Pop da SQP 
+=popsqp 0
+
+==Push para SQP 
+=pushsqp 0
+
+==Libera SQP
+=liberarsqp 0
+
 
 // fim
