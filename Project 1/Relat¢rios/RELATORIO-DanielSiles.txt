@@ -1,0 +1,11 @@
+Data,		 Horas Trabalhadas,	Tipo Tarefa,	 	Descrição da Tarefa Realizada
+22/03/2015		2h		estudar			estudei o enunciado e fiz a instalação do arcabouço.
+23/03/2015		10m		projetar		Início de um novo projeto.
+23/03/2015		10m		especificar os módulos	Leitura e entender os módulos.
+23/03/2015		20m		especificar as funções	Leitura e entender as funções e definição das funções a serem implementadas.
+23/03/2015		2h 		codificar		Inicio da codificação das funções.
+24/03/2015		1h		codificar		Continuação da codificação das funções a serem implementadas.
+24/03/2015		3h		revisar código		Revisão do código e alterações.
+24/03/2015		2h 40m		testar			Teste das funções implementadas e alterações.
+24/03/2015		2h 		corrigir		Correção final das funções.
+25/03/2015		2h 40m		revisar projeto		revisao do projeto, finalizacao da documentação e confecção dos relatórios

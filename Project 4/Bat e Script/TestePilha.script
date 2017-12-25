@@ -1,0 +1,32 @@
+// Script:    TestePilhaDeCartas.script
+// Autor: Daniel Siles
+//        Fernando Homem
+//	  Mateus Ribeiro
+// Propósito: Testar o módulo 
+//			  Pilha de Cartas.
+//
+
+==inicializando controladores
+=inicializarcontadores "."
+
+== Criar pilha numero 0
+=criarpilha      0 0
+
+
+== push pilha
+=pushpilha 0 'V' 'E' '4' 0
+
+== push pilha
+=pushpilha 0 'V' 'E' '6' 0
+
+== push pilha
+=pushpilha 0 'V' 'E' 'K' 0
+
+==Deturpa Ação 4
+=deturpar 0 7 0
+
+
+
+
+==Verifiano
+=verificarpilha 0 0

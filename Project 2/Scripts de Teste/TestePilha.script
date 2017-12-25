@@ -1,0 +1,49 @@
+// Script:    TestePilhaDeCartas.script
+// Autor: Daniel Siles
+//        Fernando Homem
+//	  Mateus Ribeiro
+// Propósito: Testar o módulo Pilha de Cartas.
+//
+
+== Criar pilha numero 0
+=criarpilha      0 0
+
+==Verifica pilha Vazia
+=verificapilha 0 1
+
+==Imprime pilha inexistente
+=imprimepilha 0 1
+
+== Push Ás de espadas visivel na pilha 0
+=pushpilha 0 'V' 'E' 'A' 0
+
+==Imprime pilha
+=imprimepilha 0 0
+
+==Verifica pilha Vazia (agora cheia)
+=verificapilha 0 0
+
+== Pop na pilha 0
+=poppilha 0 0
+
+
+== Push Ás de espadas visivel na pilha 0
+=pushpilha 0 'T' 'O' '4' 0
+
+== Pop na pilha 0
+=poppilha 0 3
+
+== Push Ás de espadas visivel na pilha 0
+=pushpilha 0 'V' 'H' '8' 0
+
+== Pop na pilha 0
+=poppilha 0 3
+
+== Push Ás de espadas visivel na pilha 0
+=pushpilha 0 'V' 'C' 'L' 0
+
+== Pop na pilha 0
+=poppilha 0 3
+
+== Liberar pilha numero 0
+=liberapilha   0 0

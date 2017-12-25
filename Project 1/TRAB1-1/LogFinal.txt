@@ -1,0 +1,64 @@
+
+
+LES - Laboratório de Engenharia de Software DI/PUC-Rio
+      Arcabouço de teste de módulos C  (c) 2006
+
+---------------------------------------------
+      Construto sob teste: TRAB1-1
+
+      Arquivo de teste:    TesteFinal.script
+
+
+!!!    0  Linha:     1  // Script:    TesteArvore.script 
+!!!    0  Linha:     2  // Autor:     Daniel Siles, Fernando Homem e Mateus Ribeiro 
+!!!    0  Linha:     3  // Data:      25/mar/2015 
+!!!    0  Linha:     4  // Propósito: Ilustrar arquivo de script, 
+!!!    0  Linha:     5  //            Testa a construção de uma árvore usando parâmetros literais 
+!!!    0  Linha:     6  //            Não verifica se as operações modificaram corretamente as referências 
+!!!    0  Linha:     7  // 
+!!!    0  Linha:     8  // 
+   10  == Verificar assertivas de entrada de irdir
+   13  == Verificar comando recuperar
+>>>    1  Linha:    14  Retorno errado ao ir para direita. Deveria ser: 0  É: 4
+<<<    0  Linha:    15  Falha esperada foi recuperada. 
+   17  == Verificar ObterValorCorr relativo a árvore inexistente
+   20  == Verifica costura em caso de Árvore inexistente
+   23  == Verificar recuperar de ObterValorCorr relativo a árvore inexistente
+>>>    1  Linha:    24  Retorno errado ao obter valor corrente. Deveria ser: 1  É: 4
+<<<    0  Linha:    25  Falha esperada foi recuperada. 
+   27  == Criar árvore
+   31  == Verificar costura em Árvore vazia
+   34  == Inserir à direita
+   37  == Obter o valor inserido
+   40  == Verificar controle de obter o valor inserido errado
+>>>    1  Linha:    41  Conteúdo do nó está errado. Deveria ser: 'x'  É: 'a'
+<<<    0  Linha:    42  Falha esperada foi recuperada. 
+   44  == Ir para no pai, nao tem
+   47  == Inserir à esquerda
+   50  == Obter o valor inserido
+   53  == Testar condição de ir para lugar sem filhos
+   56  == Ir para no pai, tem
+   60  ==Verificar comando que impede inserção em nó que ja possui filho na direção dada
+   63  == Inserir à direita
+   67  == Inserir à esquerda
+   71  == Ir para no pai
+   75  == Inserir à direita
+   79  == Ir para no pai
+   83  == Ir para no pai
+   87  == Ir para no pai
+   91  == Ir para no esquerda tem
+   95  == Ir para no direita tem
+  100  == Costura Árvore
+1 b e 
+  104  == Destroi a arvore
+!!!    0  Linha:   110  // fim 
+
+!!! Número de linhas lidas:         110
+!!! Número de casos de teste:        27
+!!! Número comandos corretos:        38
+!!! Número de falhas encontradas:     0
+
+!!! Não foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0

@@ -1,0 +1,20 @@
+Data		Horas Trabalhadas		Tipo Tarefa						Descrição da Tarefa Realizada
+23/04			2			Codificar Módulos					Início da codificação dos módulos
+24/04			9			Codificar Módulos					Continuação da codificação dos módulos
+24/04			0.5			Redigir scripts de teste				Criação dos scripts de teste
+25/04			2			Codificar Módulos					Continuação da codificação dos módulos
+26/04			4			Codificar Módulos					Continuação da codificação dos módulos
+24/04			0.5			Redigir scripts de teste				Criação dos scripts de teste
+27/04			2			Relizar os testes					Realização dos testes e analise dos resultados
+27/04			3			Diagnosticar e corrigir os problemas encontrados	Correção nos módulos de implementação
+28/04			1			Revisar código do módulo				Correções nos módulos de definição
+28/04			7			Diagnosticar e corrigir os problemas encontrados	Correção nos módulos de implementação
+28/04			0.5			Revisar código do módulo				Criação das assertivas
+29/04			1			Realizar os testes					Realização dos testes e analise dos resultados
+29/04			4			Diagnosticar e corrigir os problemas encontrados	Correção nos módulos de implementação
+28/04			0.5			Revisar código do módulo				Correção das assertivas
+30/04			1			Realizar os testes					Realização dos testes e analise dos resultados
+30/04			8			Diagnosticar e corrigir os problemas encontrados	Correção nos módulos de implementação
+01/04			3			Diagnosticar e corrigir os problemas encontrados	Correção nos módulos de implementação
+04/04			8			Diagnosticar e corrigir os problemas encontrados	Correção nos módulos de implementação
+04/04			1.5			Revisar código						Revisar os módulos de definição

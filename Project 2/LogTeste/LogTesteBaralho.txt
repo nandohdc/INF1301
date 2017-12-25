@@ -1,0 +1,141 @@
+
+
+LES - Laboratório de Engenharia de Software DI/PUC-Rio
+      Arcabouço de teste de módulos C  (c) 2006
+
+---------------------------------------------
+      Construto sob teste: TRAB2-4
+
+      Arquivo de teste:    TesteBaralho.script
+
+
+!!!    0  Linha:     1  // Script: TesteBaralho.script 
+!!!    0  Linha:     2  // Autor: Daniel Siles 
+!!!    0  Linha:     3  // 	  Fernando Homem 
+!!!    0  Linha:     4  // 	  Mateus Ribeiro 
+!!!    0  Linha:     5  // Objetivo: Testar o módulo Baralho. 
+!!!    0  Linha:     6  // 
+    8  ==Inicializar um baralho não existente
+   11  ==Embaralhar baralho não existente
+   14  ==Criar baralho
+   17  ==Inicializar um baralho de um naipe
+   20  ==Embaralhar baralho inicial
+   23  ==Imprimi baralho completo
+K C 
+A P 
+6 P 
+A P 
+K O 
+K E 
+8 E 
+1 P 
+5 P 
+2 E 
+7 O 
+Q O 
+3 P 
+3 O 
+3 E 
+7 P 
+K O 
+4 E 
+9 C 
+A C 
+4 E 
+4 P 
+6 P 
+Q E 
+8 E 
+4 O 
+Q O 
+1 C 
+K P 
+6 O 
+J E 
+A E 
+1 O 
+Q P 
+5 O 
+J C 
+5 C 
+7 C 
+2 O 
+J E 
+2 P 
+4 P 
+J C 
+1 C 
+7 P 
+9 E 
+9 O 
+A C 
+6 C 
+A O 
+J P 
+4 O 
+K P 
+2 E 
+8 O 
+2 C 
+8 C 
+3 P 
+2 P 
+3 C 
+9 P 
+1 P 
+J O 
+J O 
+6 E 
+1 E 
+8 C 
+A E 
+7 E 
+3 E 
+2 C 
+8 O 
+K E 
+4 C 
+7 E 
+Q E 
+K C 
+A O 
+6 O 
+1 E 
+J P 
+5 C 
+4 C 
+5 E 
+9 P 
+5 E 
+7 O 
+5 P 
+8 P 
+2 O 
+Q C 
+6 C 
+1 O 
+9 E 
+3 O 
+Q P 
+9 O 
+3 C 
+8 P 
+6 E 
+9 C 
+5 O 
+7 C 
+Q C 
+   26  ==Libera baralho
+   29  ==Criar baralho
+   32  ==Inicializar um baralho com numero de naipes inválido
+   35  ==Libera baralho
+
+!!! Número de linhas lidas:          36
+!!! Número de casos de teste:        10
+!!! Número comandos corretos:        10
+!!! Número de falhas encontradas:     0
+
+!!! Não foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0

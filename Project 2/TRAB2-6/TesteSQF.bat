@@ -1,0 +1,1 @@
+TRAB2-6 /sTesteSQF.script > LogTesteSQF.txt

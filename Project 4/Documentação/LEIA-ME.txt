@@ -1,0 +1,62 @@
+*********************************************************
+* Programa: Paciência Spider				*
+*							*
+* Data: 01/07/2015					*
+* Autores: Daniel Siles (danielsiles9@hotmail.com)	*
+*	   Fernando Homem (nandohdc@gmail.com)		*
+*	   Mateus Ribeiro (matcastro2004@yahoo.com.br)	*
+*							*
+*********************************************************
+Descrição do programa:
+
+O Trabalho 4 da disciplina INF1301 (2015.1) trata de concluir a programação de
+um jogo chamado Paciência Spider.
+
+==> O Trabalho 4 é composto de:
+
+1)Diagrama de Arquitetura/ Modelo Estrutural /
+Exemplo de Modelo Estrutural : 
+-Um arquivo em formato pdf contendo os três.
+
+2)Arquivos Fontes:
+
+Módulos de Implementação:
+-Carta.c
+-LISTA.c
+-PilhadeCartas.c
+-TESTEPILHA.c
+
+Módulos de Definição:
+-Carta.h
+-LISTA.h
+-PilhadeCartas.h
+-GENERICO.H
+-LERPARM.H
+-TST_ESPC.H
+
+Arcabouço de Teste:
+-ArcaboucoTeste.lib
+
+Arquivos Executáveis:
+-TRAB4-1.exe
+
+Scripts de Testes:
+-TestePilha.script
+
+Logs de saída:
+-LogTestePilha.txt
+
+Relatórios:
+-RELATORIO-DANIELSILES.txt
+-RELATORIO-FERNANDOHOMEM.txt
+-RELATORIO-MATEUSRIBEIRO.txt 
+
+Executando no Windows
+---------------------------------------------------------
+
+1ºPasso -> Clique duas vezes com botão esquerdo na pasta TRAB3-6 para abri-la.
+
+2ºPasso -> Clique duas vezes com o botão esquerdo no arquivo TRAB3-6.exe
+para o programa funcionar.
+
+Fim.

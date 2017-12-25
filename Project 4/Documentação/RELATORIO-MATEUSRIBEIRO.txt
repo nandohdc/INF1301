@@ -1,0 +1,9 @@
+Data		Horas Trabalhadas		Tipo Tarefa						Descrição da Tarefa Realizada
+27/06			8			Codificar Módulo					Continuação da codificação do Módulo Pilha de Cartas	
+28/06			4			Codificar Módulo					Continuação da codificação do Módulo Pilha de Cartas
+28/06			1			Diagnosticar e corrigir os problemas encontrados	Correção no Módulo Pilha de Cartas
+29/06			2			Codificar Módulo					Alterações nos Módulos implementação/definição Lista
+29/06			1			Diagnosticar e corrigir os problemas encontrados	Correção no módulo de implementação Lista
+30/06			4			Codificar Módulo					Continuação da codificação do Módulo Pilha de Cartas/Alterações no Módulo Carta
+30/06			2			Diagnosticar e corrigir os problemas encontrados	Correção no módulo de implementação do Módulo Pilha de Cartas
+01/07			2			Revisar Projeto						Correação de toda documentação e criação do módulo

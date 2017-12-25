@@ -1,0 +1,11 @@
+Data, 		Horas Trabalhadas, 	Tipo Tarefa, 		Descrição da Tarefa Realizada
+20/03/2015		2h		estudar/projetar	Ler enunciado, instalar arcabouço e modelar o problema 
+21/03/2015		7h		codificar		codificação não estava certa.
+23/03/2015		10 min		Projetar		Inicio de um novo projeto e modelagem.
+23/03/2015		10 min		especificar os módulos	Leitura e entender os módulos.		
+23/03/2015		20 min		especificar as funções	Foram definidas as funções a serem implementadas.
+23/03/2015		2h		codificar		Inicio de uma nova codificação.
+24/03/2015		3h		codificar		Finalização da codificação
+24/03/2015		3h		revisar código		revisão do código e alterações.
+24/03/2015		2h 40min	testar			teste das funções e correções.
+25/03/2015		2h 40min	revisar projeto		revisão do projeto, finalização documentação e confecção dos relatorios.	

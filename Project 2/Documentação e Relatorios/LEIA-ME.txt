@@ -1,0 +1,103 @@
+*********************************************************
+* Programa: Paciência Spider				*
+*							*
+* Data: 04/05/2015					*
+* Autores: Daniel Siles (danielsiles9@hotmail.com)	*
+*	   Fernando Homem (nandohdc@gmail.com)		*
+*	   Mateus Ribeiro (matcastro2004@yahoo.com.br)	*
+*							*
+*********************************************************
+Descrição do programa:
+
+O Trabalho 2 da disciplina INF1301 (2015.1) trata dedesenvolver
+os módulos para criação de um jogo chamado Paciência Spider.
+
+O jogo irá funcionar em Windows e será jogado através do CMD(Prompt de Comando).
+
+O jogo, Paciência Spider, é constituído de dois baralhos sem curingas, utilizando no
+total 104 cartas. E também apresenta quatro níveis de dificuldades:
+1 Naipe - Fácil,
+2 Naipes - Médio,
+3 Naipes - Difícil,
+4 Naipes - Muito Difícil.
+ 
+==> O Trabalho 2 é composto de:
+
+1)Diagrama de Arquitetura/ Modelo Estrutural / Exemplo : 
+-Um arquivo em formato pdf contendo os três.
+
+2)Arquivos Fontes:
+
+Módulos de Implementação:
+-Carta.c
+-TESTCARTA.c
+-LISTA.c
+-TESTELISTA.c
+-PilhadeCartas.c
+-TESTEPILHA.c
+-BaralhoInicial.c
+-TESTEBARALHO.c
+-Morto.c
+-TESTEMORTO.c
+-SequênciasPrincipais.c
+-TESTESQP.c
+-SequênciasFinais.c
+-TESTESQF.c
+
+Módulos de Definição:
+-Carta.h
+-LISTA.h
+-PilhadeCartas.h
+-BaralhoInicial.h
+-Morto.h
+-SequênciasPrincipais.h
+-SequênciasFinais.h
+-GENERICO.H
+-LERPARM.H
+-TST_ESPC.H
+
+Arcabouço de Teste:
+-ArcaboucoTeste.lib
+
+Arquivos Executáveis:
+-TRAB2-1.exe
+-TRAB2-2.exe
+-TRAB2-3.exe
+-TRAB2-4.exe
+-TRAB2-5.exe
+-TRAB2-6.exe
+-TRAB2-7.exe
+
+Scripts de Testes:
+-TesteCarta.script
+-TesteLista.script
+-TestePilha.script
+-TesteBaralho.script
+-TesteMorto.script
+-TesteSQP.script
+-TesteSQF.script
+
+Logs de saída:
+-LogTesteCarta.txt
+-LogTesteLista.txt
+-LogTestePilha.txt
+-LogTesteBaralho.txt
+-LogTesteMorto.txt
+-LogTesteSQP.txt
+-LogTesteSQF.txt
+
+Relatórios:
+-RELATORIO-DANIELSILES.txt
+-RELATORIO-FERNANDOHOMEM.txt
+-RELATORIO-MATEUSRIBEIRO.txt 
+
+
+Executando no Windows
+---------------------------------------------------------
+
+1ºPasso -> Clique duas vezes com botão esquerdo na pasta TRAB1-1 para abri-la.
+
+2ºPasso -> Clique duas vezes com o botão esquerdo no arquivo TRAB1-1.bat
+para o programa funcionar.
+
+Fim.

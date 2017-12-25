@@ -1,0 +1,47 @@
+
+
+LES - Laboratório de Engenharia de Software DI/PUC-Rio
+      Arcabouço de teste de módulos C  (c) 2006
+
+---------------------------------------------
+      Construto sob teste: TRAB2-3
+
+      Arquivo de teste:    TestePilha.script
+
+
+!!!    0  Linha:     1  // Script:    TestePilhaDeCartas.script 
+!!!    0  Linha:     2  // Autor: Daniel Siles 
+!!!    0  Linha:     3  //        Fernando Homem 
+!!!    0  Linha:     4  //	  Mateus Ribeiro 
+!!!    0  Linha:     5  // Propósito: Testar o módulo Pilha de Cartas. 
+!!!    0  Linha:     6  // 
+    8  == Criar pilha numero 0
+   11  ==Verifica pilha Vazia
+   14  ==Imprime pilha inexistente
+   17  == Push Ás de espadas visivel na pilha 0Carta Push: V E A
+   20  ==Imprime pilhaCarta da Pilha: P: A N: E F: V
+   23  ==Verifica pilha Vazia (agora cheia)
+   26  == Pop na pilha 0
+   30  == Push Ás de espadas visivel na pilha 0Editar: Não existe Face valida!
+Carta Push:   ä &
+   33  == Pop na pilha 0Editar: Não existe Face valida!
+
+   36  == Push Ás de espadas visivel na pilha 0Editar: Nao existe Naipe valido!
+Carta Push:   ä &
+   39  == Pop na pilha 0Editar: Não existe Face valida!
+
+   42  == Push Ás de espadas visivel na pilha 0Editar: Nao existe posicao valida!
+Carta Push:   ä &
+   45  == Pop na pilha 0Editar: Não existe Face valida!
+
+   48  == Liberar pilha numero 0
+
+!!! Número de linhas lidas:          49
+!!! Número de casos de teste:        14
+!!! Número comandos corretos:        14
+!!! Número de falhas encontradas:     0
+
+!!! Não foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0

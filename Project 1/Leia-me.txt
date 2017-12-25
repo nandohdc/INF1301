@@ -1,0 +1,19 @@
+*********************************************************
+* Programa: TRAB1-1 e TRAB1-2				*
+* Versão 4.0						*
+* Data: 25/03/2015					*
+* Autores: Daniel Siles (danielsiles9@hotmail.com)	*
+*	   Fernando Homem (nandohdc@gmail.com)		*
+*	   Mateus Ribeiro (matcastro2004@yahoo.com.br)	*
+*							*
+*********************************************************		
+
+Executando no Windows
+---------------------------------------------------------
+
+1ºPasso -> Clique duas vezes com botão esquerdo na pasta TRAB1-1 para abri-la.
+
+2ºPasso -> Clique duas vezes com o botão esquerdo no arquivo TRAB1-1.bat
+para o programa funcionar.
+
+Fim.

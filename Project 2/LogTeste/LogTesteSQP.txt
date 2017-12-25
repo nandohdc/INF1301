@@ -1,0 +1,33 @@
+
+
+LES - Laboratório de Engenharia de Software DI/PUC-Rio
+      Arcabouço de teste de módulos C  (c) 2006
+
+---------------------------------------------
+      Construto sob teste: TRAB2-7
+
+      Arquivo de teste:    TesteSQP.script
+
+
+!!!    0  Linha:     1  // Script:    TesteMonte.script 
+!!!    0  Linha:     2  // Autor:     EU 
+!!!    0  Linha:     3  // Propósito: Testar o módulo Monte. 
+!!!    0  Linha:     4  // 
+    6  ==Adiciona na sequencia nao existente
+    9  ==Cria Sequencia
+   12  ==Adicionando pilha criada previamente na sequencia
+   15  ==Adicionando pilha criada previamente na sequencia
+   18  ==Adicionando pilha criada previamente na sequenciaEntrei
+   21  ==Adicionando pilha criada previamente na sequenciaEntrei
+   24  ==Removendo da sequencia já inicializada uma pilha ate a carta selecionada
+!!!    0  Linha:    27  // fim 
+
+!!! Número de linhas lidas:          27
+!!! Número de casos de teste:         7
+!!! Número comandos corretos:         7
+!!! Número de falhas encontradas:     0
+
+!!! Não foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0

@@ -1,0 +1,44 @@
+// Script: TesteCarta.script
+// Autor: Daniel Siles
+// Fernando Homem
+// Mateus Ribeiro
+// Objetivo: Testar o módulo Carta.
+//
+==Editar uma carta inexistente
+=editarcarta 'E' 'E' 'A' 1
+==Obter naipe da carta inexistente
+=retornanaipe 1
+==Obter posicao da carta inexistente
+=retornaposicao 1
+==Obter face da carta inexistente
+=retornaface 1
+==Imprimir carta inexistente
+=imprimecarta 1
+== Criar carta
+=criarcarta 0
+== Obter naipe da carta vazia
+=retornanaipe 2
+== Obter posicao da carta vazia
+=retornaposicao 3
+== Obter face da carta vazia
+=retornaface 4
+==Imprimir carta invalida
+=imprimecarta 2
+
+== Preencher carta com naipe invalido
+=editarcarta 'V' 'T' 'A' 2
+== Preencher carta com posicao invalido
+=editarcarta 'E' 'E' 'B' 3
+== Preencher carta com face invalido
+=editarcarta 'F' 'O' 'A' 4
+== Preencher carta virada com naipe Copas valor A
+=editarcarta 'V' 'C' 'A' 0
+==Obter naipe da carta
+=retornanaipe 0
+==Obter posicao da carta
+=retornaposicao 0
+==Imprimir carta
+=imprimecarta 0
+==Detruir carta
+=destruircarta 0
+// fim

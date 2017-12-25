@@ -1,0 +1,17 @@
+Data		Horas Trabalhadas		Tipo Tarefa						Descrição da Tarefa Realizada
+13/04			1.5			Analise de Requisito					Realização da analise de requisito
+15/04			1			Modelo Estrutural					Realização do modelo estrutural
+17/04			1.5			Arquitetura						Realização da arquitetura	
+23/04			2			Codificar Módulos					Início da codificação dos módulos
+24/04			9			Codificar Módulos					Continuação da codificação dos módulos
+25/04			2			Codificar Módulos					Continuação da codificação dos módulos
+26/04			4			Codificar Módulos					Continuação da codificação dos módulos
+27/04			2			Relizar os testes					Realização dos testes e analise dos resultados
+27/04			3			Diagnosticar e corrigir os problemas encontrados	Correção nos módulos de implementação
+28/04			7			Diagnosticar e corrigir os problemas encontrados	Correção nos módulos de implementação
+29/04			1			Realizar os testes					Realização dos testes e analise dos resultados
+29/04			4			Diagnosticar e corrigir os problemas encontrados	Correção nos módulos de implementação
+30/04			1			Realizar os testes					Realização dos testes e analise dos resultados
+30/04			8			Diagnosticar e corrigir os problemas encontrados	Correção nos módulos de implementação
+01/04			3			Diagnosticar e corrigir os problemas encontrados	Correção nos módulos de implementação
+04/04			8			Diagnosticar e corrigir os problemas encontrados	Correção nos módulos de implementação

@@ -1,0 +1,27 @@
+// Script:    TesteMonte.script
+// Autor:     EU
+// Propósito: Testar o módulo Monte.
+//
+
+==Adiciona na sequencia nao existente
+=removersqp 6
+
+==Cria Sequencia
+=criarsqp 0
+
+==Adicionando pilha criada previamente na sequencia
+=adicionarsqp 0 0 
+
+==Adicionando pilha criada previamente na sequencia
+=adicionarsqp 1 4
+
+==Adicionando pilha criada previamente na sequencia
+=adicionarsqp 2 5 
+
+==Adicionando pilha criada previamente na sequencia
+=adicionarsqp 3 3 
+
+==Removendo da sequencia já inicializada uma pilha ate a carta selecionada
+=removersqp 0  
+
+// fim

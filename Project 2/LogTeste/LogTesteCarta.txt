@@ -1,0 +1,51 @@
+
+
+LES - Laboratório de Engenharia de Software DI/PUC-Rio
+      Arcabouço de teste de módulos C  (c) 2006
+
+---------------------------------------------
+      Construto sob teste: TRAB2-1
+
+      Arquivo de teste:    TesteCarta.script
+
+
+!!!    0  Linha:     1  // Script: TesteCarta.script 
+!!!    0  Linha:     2  // Autor: Daniel Siles 
+!!!    0  Linha:     3  // Fernando Homem 
+!!!    0  Linha:     4  // Mateus Ribeiro 
+!!!    0  Linha:     5  // Objetivo: Testar o módulo Carta. 
+!!!    0  Linha:     6  // 
+    7  ==Editar uma carta inexistenteEditar: Não existe a carta atual!
+
+    9  ==Obter naipe da carta inexistente
+   11  ==Obter posicao da carta inexistente
+   13  ==Obter face da carta inexistente
+   15  ==Imprimir carta inexistente
+   17  == Criar carta
+   19  == Obter naipe da carta vazia
+   21  == Obter posicao da carta vazia
+   23  == Obter face da carta vazia
+   25  ==Imprimir carta invalida
+   28  == Preencher carta com naipe invalidoEditar: Nao existe Naipe valido!
+
+   30  == Preencher carta com posicao invalidoEditar: Nao existe posicao valida!
+
+   32  == Preencher carta com face invalidoEditar: Não existe Face valida!
+
+   34  == Preencher carta virada com naipe Copas valor A
+   36  ==Obter naipe da carta
+   38  ==Obter posicao da carta
+   40  ==Imprimir carta
+A C 
+   42  ==Detruir carta
+!!!    0  Linha:    44  // fim 
+
+!!! Número de linhas lidas:          44
+!!! Número de casos de teste:        18
+!!! Número comandos corretos:        18
+!!! Número de falhas encontradas:     0
+
+!!! Não foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0

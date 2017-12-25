@@ -1,0 +1,1 @@
+Terabalho /sTestePilha.script > LogTestePilha.txt
