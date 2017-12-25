@@ -1,6 +1,6 @@
 # INF1301 - 2015.1
 [English] - Modular Programming
-<br>Project #3 of INF1301 Course at PUC-Rio.</br>
+<br>INF1301 Course at PUC-Rio.</br>
 <br>Authors:</br> 
 - Daniel Siles (danielsiles9@hotmail.com)
 - Fernando Homem da Costa (nandohdc@gmail.com)
